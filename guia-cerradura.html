@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía de Seguridad: Cerraduras Inteligentes</title>
+    <link rel="icon" href="imagenes/candado.jpg" type="image/jpg">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-bg: #f0f4f8;      
+            --header-bg: #0a2540;       
+            --nav-bg: #113355;          
+            --text-main: #1c2d3d;       
+            --text-muted: #4a5c6d;      
+            --accent-color: #007bff;    
+            --accent-hover: #0056b3;    
+            --border-color: #cce0ff;    
+            --card-bg: #ffffff;         
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--primary-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .top-bar {
+            background-color: var(--header-bg);
+            color: #ffffff;
+            padding: 15px 5%;
+            font-size: 28px;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 120px auto 40px auto; 
+            padding: 0 20px;
+            background-color: white;
+            padding-bottom: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .btn-home {
+            display: inline-block;
+            background-color: var(--header-bg);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .guide-header {
+            text-align: center;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .guide-header h1 {
+            color: var(--header-bg);
+            font-size: 36px;
+        }
+
+        .guide-header img {
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        h2.seccion-titulo {
+            color: var(--nav-bg);
+            border-left: 5px solid var(--accent-color);
+            padding-left: 15px;
+            margin-top: 40px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 2px solid var(--border-color);
+        }
+
+        .btn-nav {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-nav:hover {
+            background-color: var(--accent-hover);
+        }
+
+        /* ============================================================
+           ESTILOS AISLADOS DEL SLIDER (CERRADURAS INTELIGENTES)
+        ============================================================ */
+        .lock-slider-container {
+            position: relative;
+            width: 100%;
+            margin: 40px 0;
+            background: #ffffff;
+            border: 3px solid var(--header-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            font-family: 'Urbanist', sans-serif;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .lock-slide {
+            display: none; 
+            padding: 50px 60px; 
+            min-height: 400px;
+            flex-direction: column;
+            justify-content: center;
+            animation: lockFade 0.4s ease;
+        }
+
+        .lock-slide.active {
+            display: flex; 
+        }
+
+        @keyframes lockFade {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .lock-slide-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 38px;
+            color: var(--header-bg);
+            margin: 0 0 20px 0;
+            line-height: 1.2;
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 10px;
+        }
+
+        .lock-text {
+            font-size: 21px;
+            color: var(--text-main);
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .lock-list {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .lock-list li {
+            font-size: 20px;
+            color: var(--text-main);
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .lock-content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        /* Contenedor de la única imagen */
+        .lock-img-wrapper {
+            background: #f0f4f8;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            height: 250px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .lock-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .lock-controls {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 40px;
+            background: var(--primary-bg);
+            border-top: 2px solid var(--border-color);
+        }
+
+        .lock-btn-slider {
+            background: var(--header-bg);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .lock-btn-slider:hover:not(:disabled) {
+            background: var(--accent-hover);
+        }
+
+        .lock-btn-slider:disabled {
+            background: #cbd5e1;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="top-bar">Ciberseguridad Básica</div>
+    </header>
+
+    <main>
+        <a href="index.html#dispositivos" class="btn-home">← Volver a todos los dispositivos</a>
+
+        <div class="guide-header">
+            <h1>Proteger tu Cerraduras Inteligentes</h1>
+            <img src="imagenes/cerradura.png" alt="Cerraduras Inteligentes" width="200" onerror="this.style.display='none'">
+        </div>
+
+        <section>
+            <h2 class="seccion-titulo">¿Por qué es un riesgo?</h2>
+            <p>Este es el dispositivo con mayor riesgo físico. Una cerradura inteligente mal protegida podría permitir que un ladrón abra la puerta de tu casa simplemente adivinando una clave débil o hackeando la señal de Wi-Fi. Es literalmente la llave de tu casa en formato digital.</p>
+        </section>
+
+        <section>
+            <h2 class="seccion-titulo">Manual Interactivo Paso a Paso</h2>
+            
+            <div class="lock-slider-container">
+                
+                <div class="lock-slide active" style="text-align: center;">
+                    <h1 style="font-family: 'Poppins', sans-serif; font-size: 46px; color: var(--header-bg); margin: 0 0 15px 0;">Cerraduras Inteligentes</h1>
+                    <p class="lock-text" style="color: var(--text-muted); font-size: 24px;">Seguridad Física Real: Proteja la entrada a su hogar.</p>
+                </div>
+
+                <div class="lock-slide">
+                    <h2 class="lock-slide-title">La Llave que se puede Copiar</h2>
+                    <div class="lock-content-grid">
+                        <div class="lock-text">
+                            <p>Si un hacker entra a su cuenta de la cerradura, no necesita romper una ventana; puede entrar caminando por la puerta principal.</p>
+                        </div>
+                        <div class="lock-img-wrapper">
+                            <img src="imagenes/cerradurra1.png" alt="Riesgo de cerradura">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lock-slide">
+                    <h2 class="lock-slide-title">Paso 1: Cambie el Código Maestro</h2>
+                    <p class="lock-text">Busque en la App o el manual el apartado de "Master PIN" o "Código de Administrador".</p>
+                    <ul class="lock-list">
+                        <li>• Ponga una clave de al menos 6 u 8 dígitos.</li>
+                        <li>• No use fechas de nacimiento ni números obvios.</li>
+                        <li>• <strong>Acción:</strong> Cambie este código inmediatamente al sacar el aparato de la caja.</li>
+                    </ul>
+                </div>
+
+                <div class="lock-slide">
+                    <h2 class="lock-slide-title">Paso 2: Códigos para Visitas</h2>
+                    <p class="lock-text" style="margin-bottom: 20px;">Nunca dé su código principal a extraños o personal de limpieza. Use la función de "Códigos Temporales":</p>
+                    <p class="lock-text" style="font-weight: bold; margin-bottom: 5px;">Código de un solo uso</p>
+                    <p class="lock-text" style="margin-bottom: 20px;">Cree una clave que solo funcione una vez y luego se borre automáticamente.</p>
+                    <p class="lock-text" style="font-weight: bold; margin-bottom: 5px;">Código con Horario</p>
+                    <p class="lock-text">Permita que el código de la persona de limpieza solo funcione, por ejemplo, los martes de 10:00 AM a 12:00 PM.</p>
+                </div>
+
+                <div class="lock-slide" style="text-align: center;">
+                    <h2 class="lock-slide-title" style="border: none; padding: 0;">Casa Blindada</h2>
+                    <p class="lock-text">Usted ahora tiene el control absoluto de quién entra a su casa y a qué hora. La tecnología es su nuevo escudo físico.</p>
+                </div>
+
+                <div class="lock-controls">
+                    <button class="lock-btn-slider" id="lockPrev" onclick="moveLockSlide(-1)" disabled>Anterior</button>
+                    <button class="lock-btn-slider" id="lockNext" onclick="moveLockSlide(1)">Siguiente</button>
+                </div>
+            </div>
+
+            <script>
+                let currentLSlide = 0;
+                const lSlides = document.querySelectorAll('.lock-slide');
+                const btnLPrev = document.getElementById('lockPrev');
+                const btnLNext = document.getElementById('lockNext');
+
+                function moveLockSlide(step) {
+                    lSlides[currentLSlide].classList.remove('active');
+                    currentLSlide += step;
+
+                    if (currentLSlide >= lSlides.length) {
+                        window.location.href = 'guia-impresora.html';
+                        return;
+                    }
+
+                    if (currentLSlide < 0) currentLSlide = 0;
+
+                    lSlides[currentLSlide].classList.add('active');
+                    
+                    btnLPrev.disabled = currentLSlide === 0;
+
+                    if (currentLSlide === lSlides.length - 1) {
+                        btnLNext.innerText = "Finalizar ✓";
+                    } else {
+                        btnLNext.innerText = "Siguiente →";
+                    }
+                }
+            </script>
+        </section>
+
+        <div class="nav-buttons">
+            <a href="guia-reloj.html" class="btn-nav">← Anterior: Smartwatch</a>
+            <a href="guia-impresora.html" class="btn-nav">Siguiente: Impresoras →</a>
+        </div>
+    </main>
+</body>
+</html>

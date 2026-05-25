@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía de Seguridad: Smart TV</title>
+    <link rel="icon" href="imagenes/candado.jpg" type="image/jpg">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;700&family=Azeret+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-bg: #f0f4f8;      
+            --header-bg: #0a2540;       
+            --nav-bg: #113355;          
+            --text-main: #1c2d3d;       
+            --text-muted: #4a5c6d;      
+            --accent-color: #007bff;    
+            --accent-hover: #0056b3;    
+            --border-color: #cce0ff;    
+            --card-bg: #ffffff;         
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--primary-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .top-bar {
+            background-color: var(--header-bg);
+            color: #ffffff;
+            padding: 15px 5%;
+            font-size: 28px;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 120px auto 40px auto; 
+            padding: 0 20px;
+            background-color: white;
+            padding-bottom: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .btn-home {
+            display: inline-block;
+            background-color: var(--header-bg);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .guide-header {
+            text-align: center;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .guide-header h1 {
+            color: var(--header-bg);
+            font-size: 36px;
+        }
+
+        .guide-header img {
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        h2.seccion-titulo {
+            color: var(--nav-bg);
+            border-left: 5px solid var(--accent-color);
+            padding-left: 15px;
+            margin-top: 40px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 2px solid var(--border-color);
+        }
+
+        .btn-nav {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .btn-nav:hover {
+            background-color: var(--accent-hover);
+        }
+
+        /* ESTILOS DEL SLIDER */
+        .tv-slider-container {
+            position: relative;
+            width: 100%;
+            margin: 40px 0;
+            background: #fff3dd;
+            border: 3px solid #3c4043;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 10px 10px 0 #3c4043;
+            font-family: 'Arimo', sans-serif;
+        }
+
+        .tv-slide {
+            display: none; 
+            padding: 50px; 
+            min-height: 400px;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .tv-slide.active {
+            display: flex; 
+        }
+
+        .tv-slide-title {
+            font-size: 44px;
+            color: #3c4043;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .tv-text p {
+            font-size: 21px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        /* Layout para la Diapositiva 3 (Paso 1) que es la única con imagen */
+        .tv-grid-paso1 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .tv-img-placeholder {
+            width: 100%;
+            height: 250px;
+            background: #f4f0e6;
+            border: 2px solid #3c4043;
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .tv-img-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .tv-controls {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 40px;
+            background: #fff3dd;
+            border-top: 2px solid #3c4043;
+        }
+
+        .tv-btn-slider {
+            background: #3c4043;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .tv-btn-slider:disabled {
+            background: #9aa0a6;
+            cursor: not-allowed;
+        }
+
+        .quote-box {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .quote-box p {
+            font-size: 28px;
+            font-style: italic;
+            color: #3c4043;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="top-bar">Ciberseguridad Básica</div>
+    </header>
+
+    <main>
+        <a href="index.html#dispositivos" class="btn-home">← Volver a todos los dispositivos</a>
+
+        <div class="guide-header">
+            <img src="imagenes/smarttv.png" alt="Smart TV" width="180" onerror="this.style.display='none'">
+            <h1>Proteger tu Smart TV</h1>
+        </div>
+
+        <section>
+            <h2 class="seccion-titulo">¿Por qué es un riesgo?</h2>
+            <p>Las televisiones de hoy son computadoras enormes. Muchas de ellas recopilan datos sobre todo lo que ves, a qué hora lo ves y qué anuncios prefieres. Además, si están mal configuradas, alguien podría controlar tu pantalla de forma remota.</p>
+        </section>
+
+        <section>
+            <h2 class="seccion-titulo">Presentación Paso a Paso</h2>
+            
+            <div class="tv-slider-container">
+                
+                <div class="tv-slide active" style="text-align: center;">
+                    <h1 class="tv-slide-title">Smart TV: Privacidad</h1>
+                    <p style="font-size: 24px;">Cuando la pantalla también lo mira a usted.</p>
+                </div>
+
+                <div class="tv-slide">
+                    <h2 class="tv-slide-title">¿Quién ve a quién?</h2>
+                    <div class="tv-text">
+                        <p>Su televisión inteligente sabe exactamente qué ve, a qué hora y por cuánto tiempo. Esta información se vende a publicistas para mandarle anuncios personalizados.</p>
+                    </div>
+                </div>
+
+                <div class="tv-slide">
+                    <h2 class="tv-slide-title">Paso 1: Apague el Rastreo (ACR)</h2>
+                    <div class="tv-grid-paso1">
+                        <div class="tv-text">
+                            <p><strong>Desactive el "Espía"</strong></p>
+                            <p>Busque en el menú de Ajustes > Privacidad la opción llamada ACR o "Servicios de visualización".</p>
+                            <p>• En Samsung: "Términos y condiciones".</p>
+                            <p>• En LG: "Configuración adicional".</p>
+                            <p>• Acción: Desmarque todas las casillas de "Publicidad personalizada".</p>
+                        </div>
+                        <div class="tv-img-placeholder">
+                            <img src="imagenes/tele1.jpg" alt="Desactivar ACR">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tv-slide">
+                    <h2 class="tv-slide-title">Paso 2: Micrófonos y Cámaras</h2>
+                    <div class="tv-text">
+                        <p><i class="fa-solid fa-microphone-slash"></i> <strong>Micrófonos:</strong> Revise si su control tiene un botón de voz. Vaya a Permisos de Aplicaciones y asegúrese de que aplicaciones desconocidas no tengan acceso al micrófono.</p>
+                        <p><i class="fa-solid fa-camera"></i> <strong>Cámaras:</strong> Si su TV tiene cámara integrada, haga lo más sencillo y seguro: ponga un pedazo de cinta oscura sobre ella cuando no la esté usando para videollamadas.</p>
+                    </div>
+                </div>
+
+                <div class="tv-slide">
+                    <div class="quote-box">
+                        <p>"Si el producto es inteligente y gratis, el producto probablemente sea usted y sus hábitos."</p>
+                        <p style="font-weight: bold; font-style: normal; margin-top: 10px;">— Consejo de Seguridad Digital</p>
+                    </div>
+                </div>
+
+                <div class="tv-slide" style="text-align: center;">
+                    <h1 class="tv-slide-title">Disfrute con Privacidad</h1>
+                    <p style="font-size: 22px;">Ahora usted decide qué información comparte con el mundo mientras descansa en su sala.</p>
+                </div>
+
+                <div class="tv-controls">
+                    <button class="tv-btn-slider" id="prevTv" onclick="changeSlide(-1)" disabled>Anterior</button>
+                    <button class="tv-btn-slider" id="nextTv" onclick="changeSlide(1)">Siguiente</button>
+                </div>
+            </div>
+
+            <script>
+                let currentSlide = 0;
+                const slides = document.querySelectorAll('.tv-slide');
+                function changeSlide(n) {
+                    slides[currentSlide].classList.remove('active');
+                    currentSlide += n;
+                    if (currentSlide >= slides.length) {
+                        window.location.href = 'guia-asistente.html';
+                        return;
+                    }
+                    slides[currentSlide].classList.add('active');
+                    document.getElementById('prevTv').disabled = currentSlide === 0;
+                    document.getElementById('nextTv').innerText = currentSlide === slides.length - 1 ? 'Finalizar ✓' : 'Siguiente';
+                }
+            </script>
+        </section>
+
+        <div class="nav-buttons">
+            <a href="guia-celular.html" class="btn-nav">← Anterior</a>
+            <a href="guia-asistente.html" class="btn-nav">Siguiente →</a>
+        </div>
+    </main>
+</body>
+</html>

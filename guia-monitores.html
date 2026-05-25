@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Guía de Seguridad: Monitores de Bebé Wi-Fi</title>
+
+    <link rel="icon" href="imagenes/candado.jpg" type="image/jpg">
+
+    <style>
+
+        :root {
+            --primary-bg: #f0f4f8;
+            --header-bg: #0a2540;
+            --nav-bg: #113355;
+            --text-main: #1c2d3d;
+            --text-muted: #4a5c6d;
+            --accent-color: #007bff;
+            --accent-hover: #0056b3;
+            --border-color: #cce0ff;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI',
+            Roboto, Oxygen, Ubuntu, Cantarell,
+            'Open Sans', 'Helvetica Neue', sans-serif;
+
+            margin: 0;
+            padding: 0;
+            background-color: var(--primary-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .top-bar {
+            background-color: var(--header-bg);
+            color: #ffffff;
+            padding: 15px 5%;
+            font-size: 28px;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 120px auto 40px auto;
+            padding: 0 20px;
+            background-color: white;
+            padding-bottom: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .btn-home {
+            display: inline-block;
+            background-color: var(--header-bg);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .guide-header {
+            text-align: center;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .guide-header h1 {
+            color: var(--header-bg);
+            font-size: 36px;
+        }
+
+        .guide-header img {
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        h2 {
+            color: var(--nav-bg);
+            border-left: 5px solid var(--accent-color);
+            padding-left: 15px;
+            margin-top: 40px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 2px solid var(--border-color);
+        }
+
+        .btn-nav {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .btn-nav:hover {
+            background-color: var(--accent-hover);
+        }
+
+        /* =========================================================
+           SLIDER MONITORES DE BEBÉ
+        ========================================================= */
+
+        .baby-section-title {
+            color: var(--nav-bg);
+            border-left: 5px solid var(--accent-color);
+            padding-left: 15px;
+            margin-top: 40px;
+        }
+
+        .baby-slider-container {
+            position: relative;
+            width: 100%;
+            margin: 40px 0;
+            background: #eef4fb;
+            border: 3px solid #0a2540;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 10px 10px 0 rgba(10, 37, 64, 0.15);
+        }
+
+        .baby-slide {
+            display: none;
+            padding: 50px 60px;
+            min-height: 420px;
+            flex-direction: column;
+            justify-content: center;
+            animation: babyFade 0.4s ease-in-out;
+        }
+
+        .baby-slide.active {
+            display: flex;
+        }
+
+        @keyframes babyFade {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .baby-slide-title {
+            font-size: 42px;
+            color: #0a2540;
+            margin: 0 0 25px 0;
+            line-height: 1.2;
+            border-bottom: 3px solid #0a2540;
+            padding-bottom: 10px;
+        }
+
+        .baby-text {
+            font-size: 21px;
+            color: #1c2d3d;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .baby-content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .baby-img-wrapper {
+            width: 100%;
+            height: 260px;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid #0a2540;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ========= CORRECCIÓN ========= */
+
+        .baby-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* =============================== */
+
+        .baby-controls {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 40px;
+            background: rgba(10, 37, 64, 0.06);
+            border-top: 2px solid #0a2540;
+        }
+
+        .baby-btn-slider {
+            background: #0a2540;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .baby-btn-slider:disabled {
+            background: #9fb2c7;
+            cursor: not-allowed;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="top-bar">
+            Ciberseguridad Básica
+        </div>
+    </header>
+
+    <main>
+
+        <a href="index.html#dispositivos" class="btn-home">
+            ← Volver a todos los dispositivos
+        </a>
+
+        <div class="guide-header">
+
+            <h1>
+                Proteger tu Monitores de Bebé Wi-Fi
+            </h1>
+
+            <img
+                src="imagenes/monitores.png"
+                alt="Monitores de Bebé Wi-Fi"
+                width="200"
+            >
+
+        </div>
+
+        <section>
+
+            <h2>
+                ¿Por qué es un riesgo?
+            </h2>
+
+            <p>
+                Son cámaras que colocas en la habitación de tus hijos.
+                Hackers en todo el mundo suelen buscarlos porque muchos padres
+                olvidan cambiar la contraseña de fábrica.
+                Un extraño podría espiar a tu familia o hablar por el altavoz
+                para asustar a los niños.
+            </p>
+
+        </section>
+
+        <section>
+
+            <h2 class="baby-section-title">
+                Manual Interactivo Paso a Paso
+            </h2>
+
+            <div class="baby-slider-container">
+
+                <!-- SLIDE 1 -->
+
+                <div class="baby-slide active" style="text-align:center;">
+
+                    <h1 style="font-size:48px; color:#0a2540; margin:0 0 15px 0;">
+
+                        Monitores de Bebé:
+                        <br>
+                        Privacidad en la Cuna
+
+                    </h1>
+
+                    <p class="baby-text" style="color:#4a5c6d;">
+
+                        Evite que extraños escuchen o vean
+                        el cuarto de sus hijos.
+
+                    </p>
+
+                </div>
+
+                <!-- SLIDE 2 -->
+
+                <div class="baby-slide">
+
+                    <h2 class="baby-slide-title">
+                        El Riesgo del Feed Abierto
+                    </h2>
+
+                    <p class="baby-text">
+
+                        Los monitores Wi-Fi transmiten audio y video
+                        a través de internet.
+                        Si no están blindados, el riesgo es extremo:
+
+                    </p>
+
+                    <p class="baby-text">
+                        • Intercepción de audio:
+                        Personas externas pueden hablar por el altavoz.
+                    </p>
+
+                    <p class="baby-text">
+                        • Fuga de imágenes:
+                        El video puede ser grabado por atacantes.
+                    </p>
+
+                    <p class="baby-text">
+                        • Puerta a la red:
+                        Un monitor débil permite hackear su computadora.
+                    </p>
+
+                </div>
+
+                <!-- SLIDE 3 -->
+
+                <div class="baby-slide">
+
+                    <h2 class="baby-slide-title">
+                        Paso 1: Aislamiento de Red
+                    </h2>
+
+                    <div class="baby-content-grid">
+
+                        <div>
+
+                            <p class="baby-text" style="font-weight:bold;">
+                                Use la Red de Invitados
+                            </p>
+
+                            <p class="baby-text">
+
+                                Esto crea un muro digital.
+                                Si alguien hackea el monitor,
+                                no podrá saltar a su PC personal.
+
+                            </p>
+
+                            <p class="baby-text">
+                                • Entre a la configuración de su router Wi-Fi.
+                            </p>
+
+                            <p class="baby-text">
+                                • Active la opción "Guest Network".
+                            </p>
+
+                            <p class="baby-text">
+                                • Conecte el monitor exclusivamente
+                                a esa red separada.
+                            </p>
+
+                        </div>
+
+                        <div class="baby-img-wrapper">
+
+                            <img
+                                src="imagenes/monitores2.png"
+                                alt="Red de invitados"
+                            >
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- SLIDE 4 -->
+
+                <div class="baby-slide">
+
+                    <h2 class="baby-slide-title">
+                        Paso 2: Firmware Actualizado
+                    </h2>
+
+                    <div class="baby-content-grid">
+
+                        <div>
+
+                            <p class="baby-text">
+
+                                Las cámaras necesitan “vacunarse”
+                                contra virus digitales mediante actualizaciones.
+
+                            </p>
+
+                            <p class="baby-text">
+                                • Active la Actualización Automática
+                                en la App del monitor.
+                            </p>
+
+                            <p class="baby-text">
+                                • Revise el menú "Sistema" mensualmente.
+                            </p>
+
+                            <p class="baby-text">
+                                • Un fabricante que no actualiza su equipo
+                                es inseguro.
+                            </p>
+
+                        </div>
+
+                        <div class="baby-img-wrapper">
+
+                            <img
+                                src="imagenes/monitores3.png"
+                                alt="Actualización del monitor"
+                            >
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- SLIDE 5 -->
+
+                <div class="baby-slide">
+
+                    <h2 class="baby-slide-title">
+                        Habitación Segura
+                    </h2>
+
+                    <p class="baby-text" style="font-weight:bold;">
+
+                        PRIVACIDAD | SEGURIDAD | CONTROL
+
+                    </p>
+
+                    <p class="baby-text">
+
+                        Ahora el monitor de su bebé está protegido
+                        contra accesos externos y ataques comunes de internet.
+
+                    </p>
+
+                </div>
+
+                <!-- CONTROLES -->
+
+                <div class="baby-controls">
+
+                    <button
+                        class="baby-btn-slider"
+                        id="babyPrev"
+                        onclick="moveBaby(-1)"
+                        disabled
+                    >
+                        Anterior
+                    </button>
+
+                    <button
+                        class="baby-btn-slider"
+                        id="babyNext"
+                        onclick="moveBaby(1)"
+                    >
+                        Siguiente →
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <div class="nav-buttons">
+
+            <a href="guia-timbres.html" class="btn-nav">
+                ← Anterior: Timbres con Video
+            </a>
+
+            <a href="guia-sistemas.html" class="btn-nav">
+                Siguiente: Sistemas de Alarma →
+            </a>
+
+        </div>
+
+    </main>
+
+    <script>
+
+        let currentBabySlide = 0;
+
+        const babySlides =
+            document.querySelectorAll('.baby-slide');
+
+        const babyPrev =
+            document.getElementById('babyPrev');
+
+        const babyNext =
+            document.getElementById('babyNext');
+
+        function moveBaby(step) {
+
+            babySlides[currentBabySlide]
+                .classList.remove('active');
+
+            currentBabySlide += step;
+
+            if (currentBabySlide >= babySlides.length) {
+
+                window.location.href =
+                    'guia-sistemas.html';
+
+                return;
+            }
+
+            if (currentBabySlide < 0) {
+                currentBabySlide = 0;
+            }
+
+            babySlides[currentBabySlide]
+                .classList.add('active');
+
+            babyPrev.disabled =
+                currentBabySlide === 0;
+
+            if (
+                currentBabySlide ===
+                babySlides.length - 1
+            ) {
+
+                babyNext.innerText =
+                    "Finalizar ✓";
+
+            } else {
+
+                babyNext.innerText =
+                    "Siguiente →";
+            }
+        }
+
+    </script>
+
+</body>
+</html>

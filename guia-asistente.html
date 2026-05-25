@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía de Seguridad: Asistentes de Voz (Alexa / Google)</title>
+    <link rel="icon" href="imagenes/candado.jpg" type="image/jpg">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;700&family=Azeret+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-bg: #f0f4f8;      
+            --header-bg: #0a2540;       
+            --nav-bg: #113355;          
+            --text-main: #1c2d3d;       
+            --text-muted: #4a5c6d;      
+            --accent-color: #007bff;    
+            --accent-hover: #0056b3;    
+            --border-color: #cce0ff;    
+            --card-bg: #ffffff;         
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--primary-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .top-bar {
+            background-color: var(--header-bg);
+            color: #ffffff;
+            padding: 15px 5%;
+            font-size: 28px;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 120px auto 40px auto; 
+            padding: 0 20px;
+            background-color: white;
+            padding-bottom: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .btn-home {
+            display: inline-block;
+            background-color: var(--header-bg);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .guide-header {
+            text-align: center;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .guide-header h1 {
+            color: var(--header-bg);
+            font-size: 36px;
+        }
+
+        .guide-header img {
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        h2.seccion-titulo {
+            color: var(--nav-bg);
+            border-left: 5px solid var(--accent-color);
+            padding-left: 15px;
+            margin-top: 40px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 2px solid var(--border-color);
+        }
+
+        .btn-nav {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-nav:hover {
+            background-color: var(--accent-hover);
+        }
+
+        /* ============================================================
+           ESTILOS AISLADOS DEL SLIDER (ASISTENTES DE VOZ)
+        ============================================================ */
+        .voice-slider-container {
+            position: relative;
+            width: 100%;
+            margin: 40px 0;
+            background: #fff3dd;
+            border: 3px solid #3c4043;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 10px 10px 0 #3c4043;
+            font-family: 'Arimo', sans-serif;
+        }
+
+        .voice-slide {
+            display: none; 
+            padding: 50px 60px; 
+            min-height: 400px;
+            flex-direction: column;
+            justify-content: center;
+            animation: voiceFade 0.4s ease-in-out;
+        }
+
+        .voice-slide.active {
+            display: flex; 
+        }
+
+        @keyframes voiceFade {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .voice-slide-title {
+            font-size: 42px;
+            color: #3c4043;
+            margin: 0 0 25px 0;
+            line-height: 1.2;
+            border-bottom: 3px solid #3c4043;
+            padding-bottom: 10px;
+        }
+
+        .voice-text {
+            font-size: 21px;
+            color: #333;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .voice-content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .voice-img-wrapper {
+            width: 100%;
+            height: 260px;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid #3c4043;
+            background: #f4f0e6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .voice-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .voice-controls {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 40px;
+            background: rgba(60, 64, 67, 0.05);
+            border-top: 2px solid #3c4043;
+        }
+
+        .voice-btn-slider {
+            background: #3c4043;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .voice-btn-slider:disabled {
+            background: #9aa0a6;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="top-bar">Ciberseguridad Básica</div>
+    </header>
+
+    <main>
+        <a href="index.html#dispositivos" class="btn-home">← Volver a todos los dispositivos</a>
+
+        <div class="guide-header">
+            <h1>Proteger tu Asistentes de Voz (Alexa / Google)</h1>
+            <img src="imagenes/alexa.png" alt="Asistentes de Voz (Alexa / Google)" width="200" onerror="this.style.display='none'">
+        </div>
+
+        <section { margin-bottom: 20px; }>
+            <h2 class="seccion-titulo">¿Por qué es un riesgo?</h2>
+            <p>Estos aparatitos son micrófonos que están encendidos las 24 horas del día en el centro de tu casa, esperando escuchar su nombre. Guardan un historial de tu voz que, si cae en malas manos, revela mucha de tu rutina diaria.</p>
+        </section>
+
+        <section>
+            <h2 class="seccion-titulo">Manual Interactivo Paso a Paso</h2>
+            
+            <div class="voice-slider-container">
+                
+                <div class="voice-slide active" style="text-align: center;">
+                    <h1 style="font-size: 48px; color: #3c4043; margin: 0 0 15px 0;">Asistentes: Siempre Escuchando</h1>
+                    <p class="voice-text" style="color: #5f6368;">Alexa y Google: Cómo proteger su intimidad en casa.</p>
+                </div>
+
+                <div class="voice-slide">
+                    <h2 class="voice-slide-title">Memorias en la Nube</h2>
+                    <p class="voice-text">Para responderle, estos aparatos graban lo que usted dice y lo guardan en internet. Si alguien entra a su cuenta, podría escuchar conversaciones pasadas.</p>
+                </div>
+
+                <div class="voice-slide">
+                    <h2 class="voice-slide-title">Paso 1: El Botón de Silencio</h2>
+                    <div class="voice-content-grid">
+                        <div>
+                            <p class="voice-text" style="font-weight: bold; margin-bottom: 10px;">Privacidad Instantánea</p>
+                            <p class="voice-text" style="margin-bottom: 15px;">Todos los asistentes tienen un botón físico en la parte superior con un micrófono tachado.</p>
+                            <p class="voice-text" style="font-size: 18px; margin-bottom: 5px;">• Presiónelo: Se pondrá una luz roja.</p>
+                            <p class="voice-text" style="font-size: 18px; margin-bottom: 5px;">• Esto corta la corriente del micrófono por completo.</p>
+                            <p class="voice-text" style="font-size: 18px; margin-bottom: 0;">• Consejo: Úselo siempre que tenga visitas o conversaciones privadas de banco.</p>
+                        </div>
+                        <div class="voice-img-wrapper">
+                            <img src="imagenes/alexa1.webp" alt="Botón de silencio físico">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="voice-slide">
+                    <h2 class="voice-slide-title">Paso 2: Borrado Automático</h2>
+                    <div class="voice-content-grid">
+                        <div>
+                            <p class="voice-text">No deje que guarden su voz para siempre.</p>
+                            <p class="voice-text">En la App (Alexa o Google Home), vaya a Ajustes de Privacidad.</p>
+                            <p class="voice-text">Seleccione: <strong>"Borrar automáticamente cada 3 meses"</strong>. El aparato limpiará su historial solo periódicamente.</p>
+                        </div>
+                        <div class="voice-img-wrapper">
+                            <img src="imagenes/alexa2.jpg" alt="Configuración de privacidad en la app">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="voice-slide">
+                    <h2 class="voice-slide-title">Paso 3: Proteja su Cartera</h2>
+                    <p class="voice-text" style="font-weight: bold; margin-bottom: 5px;">Compras por Voz</p>
+                    <p class="voice-text" style="margin-bottom: 20px;">Desactive la opción de comprar directamente con Amazon o Google. Evite que un nieto o un anuncio de la TV pida productos sin su permiso.</p>
+                    <p class="voice-text" style="font-weight: bold; margin-bottom: 5px;">PIN de Compra</p>
+                    <p class="voice-text">Si prefiere dejar las compras activas, exija siempre un PIN de 4 dígitos que el asistente le pida antes de pagar nada.</p>
+                </div>
+
+                <div class="voice-slide">
+                    <h2 class="voice-slide-title">Un Hogar en Confianza</h2>
+                    <p class="voice-text" style="font-family: 'Azeret Mono', monospace; font-size: 18px; margin-bottom: 20px; font-weight: bold;">100% CONTROL VOCAL | PRIVACIDAD AUDITIVA</p>
+                    <p class="voice-text">Usted ahora decide cuándo escucha el asistente y cuánto tiempo guarda sus datos. La tecnología debe servirle a usted, no espiarle. ¡Felicidades por asegurar su asistente!</p>
+                </div>
+
+                <div class="voice-slide">
+                    <h2 class="voice-slide-title">¿Dudas sobre su Asistente?</h2>
+                    <p class="voice-text">Mantenga el botón de silencio a mano y revise su historial mensualmente.</p>
+                </div>
+
+                <div class="voice-controls">
+                    <button class="voice-btn-slider" id="voicePrev" onclick="moveVoice(-1)" disabled>Anterior</button>
+                    <button class="voice-btn-slider" id="voiceNext" onclick="moveVoice(1)">Siguiente</button>
+                </div>
+            </div>
+
+            <script>
+                let currentVSlide = 0;
+                const vSlides = document.querySelectorAll('.voice-slide');
+                const btnVPrev = document.getElementById('voicePrev');
+                const btnVNext = document.getElementById('voiceNext');
+
+                function moveVoice(step) {
+                    vSlides[currentVSlide].classList.remove('active');
+                    currentVSlide += step;
+
+                    if (currentVSlide >= vSlides.length) {
+                        window.location.href = 'guia-camara.html';
+                        return;
+                    }
+
+                    if (currentVSlide < 0) currentVSlide = 0;
+
+                    vSlides[currentVSlide].classList.add('active');
+                    
+                    btnVPrev.disabled = currentVSlide === 0;
+
+                    if (currentVSlide === vSlides.length - 1) {
+                        btnVNext.innerText = "Finalizar ✓";
+                    } else {
+                        btnVNext.innerText = "Siguiente →";
+                    }
+                }
+            </script>
+        </section>
+
+        <div class="nav-buttons">
+            <a href="guia-tv.html" class="btn-nav">← Anterior: Smart TV</a>
+            <a href="guia-camara.html" class="btn-nav">Siguiente: Cámaras →</a>
+        </div>
+    </main>
+</body>
+</html>

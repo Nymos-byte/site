@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía de Seguridad: Sensores de Humo y Gas</title>
+    <link rel="icon" href="imagenes/candado.jpg" type="image/jpg">
+    <style>
+        :root {
+            --primary-bg: #f0f4f8;      
+            --header-bg: #0a2540;       
+            --nav-bg: #113355;          
+            --text-main: #1c2d3d;       
+            --text-muted: #4a5c6d;      
+            --accent-color: #007bff;    
+            --accent-hover: #0056b3;    
+            --border-color: #cce0ff;    
+            --card-bg: #ffffff;         
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--primary-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .top-bar {
+            background-color: var(--header-bg);
+            color: #ffffff;
+            padding: 15px 5%;
+            font-size: 28px;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 120px auto 40px auto; 
+            padding: 0 20px;
+            background-color: white;
+            padding-bottom: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .btn-home {
+            display: inline-block;
+            background-color: var(--header-bg);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .guide-header {
+            text-align: center;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .guide-header h1 {
+            color: var(--header-bg);
+            font-size: 36px;
+        }
+
+        .guide-header img {
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        h2 {
+            color: var(--nav-bg);
+            border-left: 5px solid var(--accent-color);
+            padding-left: 15px;
+            margin-top: 40px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 2px solid var(--border-color);
+        }
+
+        .btn-nav {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .btn-nav:hover {
+            background-color: var(--accent-hover);
+        }
+
+        /* ============================================================
+           ESTILOS AISLADOS DEL SLIDER (SENSORES DE HUMO Y GAS)
+        ============================================================ */
+        .sensor-slider-container {
+            position: relative;
+            width: 100%;
+            margin: 40px 0;
+            background: #ffffff;
+            border: 3px solid var(--header-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .sensor-slide {
+            display: none; 
+            padding: 50px 60px; 
+            min-height: 400px;
+            flex-direction: column;
+            justify-content: center;
+            animation: sensorFade 0.4s ease;
+        }
+
+        .sensor-slide.active {
+            display: flex; 
+        }
+
+        @keyframes sensorFade {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .sensor-slide-title {
+            font-size: 36px;
+            color: var(--header-bg);
+            margin: 0 0 20px 0;
+            line-height: 1.2;
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 10px;
+        }
+
+        .sensor-text {
+            font-size: 21px;
+            color: var(--text-main);
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .sensor-list {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .sensor-list li {
+            font-size: 20px;
+            color: var(--text-main);
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .sensor-content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .sensor-img-wrapper {
+            background: #f0f4f8;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            height: 250px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .sensor-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .sensor-controls {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 40px;
+            background: var(--primary-bg);
+            border-top: 2px solid var(--border-color);
+        }
+
+        .sensor-btn-slider {
+            background: var(--header-bg);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .sensor-btn-slider:hover:not(:disabled) {
+            background: var(--accent-hover);
+        }
+
+        .sensor-btn-slider:disabled {
+            background: #cbd5e1;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="top-bar">Ciberseguridad Básica</div>
+    </header>
+
+    <main>
+        <a href="index.html#dispositivos" class="btn-home">← Volver a todos los dispositivos</a>
+
+        <div class="guide-header">
+            <h1>Proteger tu Sensores de Humo y Gas</h1>
+            <img src="imagenes/sensores.png" alt="Sensores de Humo y Gas" width="200">
+        </div>
+
+        <section>
+            <h2>¿Por qué es un riesgo?</h2>
+            <p>Te avisan de emergencias directamente a tu celular. Sin embargo, si alguien toma control de ellos, podría apagarlos cuando realmente hay humo, o peor aún, hacer que suenen a media noche para causar pánico falso.</p>
+        </section>
+
+        <section>
+            <h2>Manual Interactivo Paso a Paso</h2>
+            
+            <div class="sensor-slider-container">
+                
+                <div class="sensor-slide active" style="text-align: center;">
+                    <h1 style="font-size: 42px; color: var(--header-bg); margin: 0 0 15px 0;">Sensores de Humo y Gas:<br>Protección de Vida</h1>
+                    <p class="sensor-text" style="color: var(--text-muted); font-size: 24px;">Asegure que la alerta suene cuando más la necesita.</p>
+                </div>
+
+                <div class="sensor-slide">
+                    <h2 class="sensor-slide-title">El Peligro del Silencio</h2>
+                    <div class="sensor-content-grid">
+                        <div>
+                            <p class="sensor-text">El riesgo digital no es el robo de datos, sino la desactivación remota. Un ataque podría:</p>
+                            <ul class="sensor-list" style="list-style-type: none; padding-left: 0;">
+                                <li>• Silenciar la alarma durante un incendio real.</li>
+                                <li>• Drenar la batería mediante ataques de red.</li>
+                                <li>• Causar falsas alarmas para que usted ignore la verdadera emergencia.</li>
+                            </ul>
+                        </div>
+                        <div class="sensor-img-wrapper">
+                            <img src="imagenes/sensores1.png" alt="El peligro del silencio">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sensor-slide">
+                    <h2 class="sensor-slide-title">Paso 1: Prueba de Conexión</h2>
+                    <div class="sensor-content-grid">
+                        <div class="sensor-img-wrapper">
+                            <img src="imagenes/sensores2.avif" alt="Prueba de conexión">
+                        </div>
+                        <div>
+                            <p class="sensor-text">No confíe solo en el aparato físico. Use el Auto-Test de la App:</p>
+                            <ul class="sensor-list" style="list-style-type: none; padding-left: 0;">
+                                <li>• Entre a la App una vez al mes y presione "Realizar prueba".</li>
+                                <li>• Esto verifica que el sensor siga "hablando" correctamente con su Wi-Fi.</li>
+                                <li>• Si la App indica error de conexión, el sensor es inútil para avisarle a su celular.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sensor-slide">
+                    <h2 class="sensor-slide-title">Paso 2: Vida Útil y Batería</h2>
+                    <p class="sensor-text" style="margin-bottom: 20px;">La tecnología caduca. Siga estas reglas estrictas:</p>
+                    
+                    <p class="sensor-text" style="font-weight: bold; margin-bottom: 5px;">Regla de los 10 años</p>
+                    <p class="sensor-text" style="margin-bottom: 15px;">Todo sensor de humo debe ser reemplazado físicamente cada 10 años. Los sensores pierden sensibilidad.</p>
+                    
+                    <p class="sensor-text" style="font-weight: bold; margin-bottom: 5px;">Batería de Respaldo</p>
+                    <p class="sensor-text" style="margin-bottom: 15px;">Incluso si son eléctricos, mantenga baterías frescas de 9V. En un incendio, la luz suele cortarse primero.</p>
+                    
+                    <p class="sensor-text" style="font-weight: bold; margin-bottom: 5px;">Alertas de Batería</p>
+                    <p class="sensor-text">Active notificaciones de "Batería baja" al 20% para evitar el silencio accidental del sensor.</p>
+                </div>
+
+                <div class="sensor-controls">
+                    <button class="sensor-btn-slider" id="sensorPrev" onclick="moveSensorSlide(-1)" disabled>Anterior</button>
+                    <button class="sensor-btn-slider" id="sensorNext" onclick="moveSensorSlide(1)">Siguiente</button>
+                </div>
+            </div>
+
+            <script>
+                let currentSSlide = 0;
+                const sSlides = document.querySelectorAll('.sensor-slide');
+                const btnSPrev = document.getElementById('sensorPrev');
+                const btnSNext = document.getElementById('sensorNext');
+
+                function moveSensorSlide(step) {
+                    sSlides[currentSSlide].classList.remove('active');
+                    currentSSlide += step;
+
+                    if (currentSSlide >= sSlides.length) {
+                        window.location.href = 'guia-laptops.html';
+                        return;
+                    }
+
+                    if (currentSSlide < 0) currentSSlide = 0;
+
+                    sSlides[currentSSlide].classList.add('active');
+                    
+                    btnSPrev.disabled = currentSSlide === 0;
+
+                    if (currentSSlide === sSlides.length - 1) {
+                        btnSNext.innerText = "Finalizar ✓";
+                    } else {
+                        btnSNext.innerText = "Siguiente →";
+                    }
+                }
+            </script>
+        </section>
+
+        <div class="nav-buttons">
+            <a href="guia-sistemas.html" class="btn-nav">← Anterior: Sistemas de Alarma</a>
+            <a href="guia-laptops.html" class="btn-nav">Siguiente: Laptops →</a>
+        </div>
+    </main>
+</body>
+</html>

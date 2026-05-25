@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía de Seguridad: Persianas y Cortinas Smart</title>
+    <link rel="icon" href="imagenes/candado.jpg" type="image/jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary-bg: #f0f4f8;      
+            --header-bg: #0a2540;       
+            --nav-bg: #113355;          
+            --text-main: #1c2d3d;       
+            --text-muted: #4a5c6d;      
+            --accent-color: #007bff;    
+            --accent-hover: #0056b3;    
+            --border-color: #cce0ff;    
+            --card-bg: #ffffff;         
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--primary-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .top-bar {
+            background-color: var(--header-bg);
+            color: #ffffff;
+            padding: 15px 5%;
+            font-size: 28px;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        main {
+            max-width: 900px;
+            margin: 120px auto 40px auto; 
+            padding: 0 20px;
+            background-color: white;
+            padding-bottom: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .btn-home {
+            display: inline-block;
+            background-color: var(--header-bg);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .guide-header {
+            text-align: center;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .guide-header h1 {
+            color: var(--header-bg);
+            font-size: 36px;
+        }
+
+        .guide-header img {
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        h2 {
+            color: var(--nav-bg);
+            border-left: 5px solid var(--accent-color);
+            padding-left: 15px;
+            margin-top: 40px;
+        }
+
+        /* ============================================================
+           DISEÑO PREMIUM DEL SLIDER (ESTILO CONSULTORÍA)
+        ============================================================ */
+        .premium-slider-box {
+            position: relative;
+            width: 100%;
+            margin: 40px 0;
+            background: #000; 
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            font-family: 'Urbanist', sans-serif;
+            border: 1px solid #333;
+        }
+
+        .premium-slide {
+            display: none;
+            min-height: 480px;
+            padding: 50px;
+            flex-direction: column;
+            justify-content: center;
+            color: #fff;
+            animation: premiumFade 0.5s ease;
+        }
+
+        .premium-slide.active { display: flex; }
+
+        @keyframes premiumFade {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .premium-header {
+            font-family: 'Poppins', sans-serif;
+            font-size: 38px;
+            color: #deff9a;
+            margin-bottom: 25px;
+            line-height: 1.2;
+            border-left: 6px solid #deff9a;
+            padding-left: 20px;
+        }
+
+        .premium-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .premium-img-wrapper {
+            background: #111;
+            border: 2px solid #deff9a;
+            border-radius: 12px;
+            height: 250px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .premium-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .premium-text p {
+            font-size: 21px;
+            color: #daffde;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .premium-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .premium-list li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 15px;
+            color: #fff;
+            font-size: 19px;
+            line-height: 1.4;
+        }
+
+        .premium-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #deff9a;
+            font-weight: bold;
+        }
+
+        .premium-controls {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 50px;
+            background: #111;
+            border-top: 1px solid #222;
+        }
+
+        .btn-premium {
+            background: #deff9a;
+            color: #000;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+        }
+
+        .btn-premium:hover:not(:disabled) { background: #fff; transform: scale(1.05); }
+        .btn-premium:disabled { background: #333; color: #666; cursor: not-allowed; }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 2px solid var(--border-color);
+        }
+
+        .btn-nav {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .btn-nav:hover { background-color: var(--accent-hover); }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="top-bar">Ciberseguridad Básica</div>
+    </header>
+
+    <main>
+        <a href="index.html#dispositivos" class="btn-home">← Volver a todos los dispositivos</a>
+
+        <div class="guide-header">
+            <h1>Proteger tu Persianas y Cortinas Smart</h1>
+            <img src="imagenes/persianas.png" alt="Persianas y Cortinas Smart" width="200" onerror="this.style.display='none'">
+        </div>
+
+        <section>
+            <h2>¿Por qué es un riesgo?</h2>
+            <p>Suben y bajan solas según la luz del sol o tus alarmas. Estos dispositivos revelan visualmente a qué hora te despiertas, a qué hora te vas a dormir, e indican claramente desde afuera de tu casa cuándo te fuiste de vacaciones.</p>
+        </section>
+
+        <section>
+            <h2>Manual Paso a Paso para Asegurarlo</h2>
+            
+            <div class="premium-slider-box">
+                
+                <div class="premium-slide active" style="text-align: center;">
+                    <h1 style="font-family: 'Poppins', sans-serif; font-size: 52px; color: #deff9a; margin: 0 0 15px 0;">Persianas Smart:<br>Ventanas Blindadas</h1>
+                    <p style="font-size: 24px; color: #daffde;">Evitando que sus rutinas de sueño sean públicas.</p>
+                </div>
+
+                <div class="premium-slide">
+                    <h2 class="premium-header">Revelando su Intimidad</h2>
+                    <div class="premium-grid">
+                        <div class="premium-text">
+                            <p>El movimiento de sus persianas revela exactamente cuándo se levanta y cuándo se va a dormir.</p>
+                        </div>
+                        <div class="premium-img-wrapper">
+                            <img src="imagenes/persianas1.avif" alt="Revelando intimidad">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="premium-slide">
+                    <h2 class="premium-header">Riesgos de Exposición</h2>
+                    <div class="premium-grid">
+                        <div class="premium-img-wrapper">
+                            <img src="imagenes/persianas1.avif" alt="Riesgos de exposición">
+                        </div>
+                        <div class="premium-text">
+                            <ul class="premium-list">
+                                <li><strong>Visibilidad de Rutinas:</strong> Un atacante sabe en qué habitación se encuentra usted.</li>
+                                <li><strong>Acceso Remoto:</strong> Un hacker podría abrir sus persianas desde la calle de noche.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="premium-slide">
+                    <h2 class="premium-header">Paso 1: Modo "Vacaciones"</h2>
+                    <div class="premium-text" style="max-width: 85%; margin: 0 auto;">
+                        <p style="font-weight: bold; font-size: 24px; color: #deff9a;">Movimiento Aleatorio</p>
+                        <p>Active el "Modo Fuera de Casa".</p>
+                        <p>Las persianas se moverán con variaciones de 15-20 min cada día para confundir a cualquiera que vigile la casa desde afuera.</p>
+                    </div>
+                </div>
+
+                <div class="premium-controls">
+                    <button class="btn-premium" id="btn-ant" onclick="cambiarSlide(-1)" disabled>Anterior</button>
+                    <button class="btn-premium" id="btn-sig" onclick="cambiarSlide(1)">Siguiente</button>
+                </div>
+            </div>
+
+            <script>
+                let actual = 0;
+                const slides = document.querySelectorAll('.premium-slide');
+                const btnAnt = document.getElementById('btn-ant');
+                const btnSig = document.getElementById('btn-sig');
+
+                function cambiarSlide(direccion) {
+                    slides[actual].classList.remove('active');
+                    actual += direccion;
+
+                    if (actual >= slides.length) {
+                        window.location.href = 'guia-riego.html';
+                        return;
+                    }
+
+                    slides[actual].classList.add('active');
+                    btnAnt.disabled = actual === 0;
+                    btnSig.innerText = actual === slides.length - 1 ? 'Finalizar ✓' : 'Siguiente';
+                }
+            </script>
+        </section>
+
+        <div class="nav-buttons">
+            <a href="guia-enchufes.html" class="btn-nav">← Anterior: Enchufes Inteligentes</a>
+            <a href="guia-riego.html" class="btn-nav">Siguiente: Sistemas de Riego →</a>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía de Seguridad: Laptops</title>
+    <link rel="icon" href="imagenes/candado.jpg" type="image/jpg">
+    <style>
+        :root {
+            --primary-bg: #f0f4f8;      
+            --header-bg: #0a2540;       
+            --nav-bg: #113355;          
+            --text-main: #1c2d3d;       
+            --text-muted: #4a5c6d;      
+            --accent-color: #007bff;    
+            --accent-hover: #0056b3;    
+            --border-color: #cce0ff;    
+            --card-bg: #ffffff;         
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--primary-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .top-bar {
+            background-color: var(--header-bg);
+            color: #ffffff;
+            padding: 15px 5%;
+            font-size: 28px;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 120px auto 40px auto; 
+            padding: 0 20px;
+            background-color: white;
+            padding-bottom: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .btn-home {
+            display: inline-block;
+            background-color: var(--header-bg);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .guide-header {
+            text-align: center;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .guide-header h1 {
+            color: var(--header-bg);
+            font-size: 36px;
+        }
+
+        .guide-header img {
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        h2 {
+            color: var(--nav-bg);
+            border-left: 5px solid var(--accent-color);
+            padding-left: 15px;
+            margin-top: 40px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 2px solid var(--border-color);
+        }
+
+        .btn-nav {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .btn-nav:hover {
+            background-color: var(--accent-hover);
+        }
+
+        /* ESTILOS DEL SLIDER */
+        .laptop-slider-container {
+            position: relative;
+            width: 100%;
+            margin: 40px 0;
+            background: #ffffff;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .laptop-slide {
+            display: none; 
+            padding: 40px; 
+            min-height: 400px;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .laptop-slide.active {
+            display: flex; 
+        }
+
+        .laptop-slide-title {
+            font-size: 32px;
+            color: var(--header-bg);
+            margin: 0 0 20px 0;
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 10px;
+        }
+
+        .laptop-content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .laptop-img-wrapper {
+            background: #f0f4f8;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            height: 220px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .laptop-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .laptop-list {
+            margin: 10px 0 0 0;
+            padding-left: 20px;
+        }
+
+        .laptop-list li {
+            margin-bottom: 12px;
+            font-size: 17px;
+        }
+
+        .laptop-controls {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 40px;
+            background: #f9fbff;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .laptop-btn-slider {
+            background: var(--header-bg);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .laptop-btn-slider:hover:not(:disabled) {
+            background: var(--accent-color);
+        }
+
+        .laptop-btn-slider:disabled {
+            background: #cbd5e1;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="top-bar">Ciberseguridad Básica</div>
+    </header>
+
+    <main>
+        <a href="index.html#dispositivos" class="btn-home">← Volver a todos los dispositivos</a>
+
+        <div class="guide-header">
+            <h1>Proteger tu Laptops</h1>
+            <img src="imagenes/laptops.png" alt="Laptops" width="200">
+        </div>
+
+        <section>
+            <h2>Presentación Paso a Paso</h2>
+            
+            <div class="laptop-slider-container">
+                
+                <div class="laptop-slide active" style="text-align: center;">
+                    <h1 style="font-size: 42px; color: var(--header-bg); margin: 0 0 15px 0;">Laptops: Oficina Blindada</h1>
+                    <p style="font-size: 22px; color: var(--text-muted);">Cierre la puerta a los espías cuando trabaje fuera de casa.</p>
+                </div>
+
+                <div class="laptop-slide">
+                    <h2 class="laptop-slide-title">Riesgo en Redes Públicas</h2>
+                    <div class="laptop-content-grid">
+                        <div>
+                            <p style="font-size: 18px;">Al ser portátiles, las laptops se exponen a redes Wi-Fi de cafés u hoteles. Estas redes son trampas:</p>
+                            <ul class="laptop-list">
+                                <li><strong>Robo de datos:</strong> Hackers "escuchan" todo lo que usted envía.</li>
+                                <li><strong>Acceso físico:</strong> Si le roban el equipo, sus archivos están expuestos.</li>
+                                <li><strong>Puertos abiertos:</strong> Virus que saltan de un equipo a otro en el mismo Wi-Fi.</li>
+                            </ul>
+                        </div>
+                        <div class="laptop-img-wrapper">
+                            <img src="imagenes/laptops1.jpg" alt="Riesgo en redes públicas">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="laptop-slide">
+                    <h2 class="laptop-slide-title">Paso 1: Cifrado de Disco Duro</h2>
+                    <div class="laptop-content-grid">
+                        <div class="laptop-img-wrapper">
+                            <img src="imagenes/laptops2.png" alt="Cifrado de disco duro">
+                        </div>
+                        <div>
+                            <p style="font-size: 18px;">Proteja sus archivos físicamente. Si le roban la laptop, que no vean sus fotos ni bancos:</p>
+                            <ul class="laptop-list">
+                                <li>Windows: Active <strong>BitLocker</strong> en Ajustes > Seguridad.</li>
+                                <li>Mac: Active <strong>FileVault</strong> en Privacidad y Seguridad.</li>
+                                <li>Esto pone un candado a todo el disco. Sin su clave de inicio, los archivos son ilegibles para un ladrón.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="laptop-slide">
+                    <h2 class="laptop-slide-title">Paso 2: Use VPN Siempre</h2>
+                    <div class="laptop-content-grid">
+                        <div>
+                            <p style="font-size: 18px;">Cree un túnel secreto para sus datos en redes públicas:</p>
+                            <ul class="laptop-list">
+                                <li>Contrate un servicio de <strong>VPN</strong> confiable (NordVPN, Mullvad).</li>
+                                <li>Actívela <strong>antes</strong> de abrir su correo o banco en el Wi-Fi del hotel.</li>
+                                <li>La VPN cifra su rastro, haciendo que su conexión sea invisible para otros usuarios de la red.</li>
+                            </ul>
+                        </div>
+                        <div class="laptop-img-wrapper">
+                            <img src="imagenes/laptops3.jpg" alt="Uso de VPN">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="laptop-controls">
+                    <button class="laptop-btn-slider" id="laptopPrev" onclick="moveLaptopSlide(-1)" disabled>Anterior</button>
+                    <button class="laptop-btn-slider" id="laptopNext" onclick="moveLaptopSlide(1)">Siguiente</button>
+                </div>
+            </div>
+
+            <script>
+                let currentLSlide = 0;
+                const lSlides = document.querySelectorAll('.laptop-slide');
+                const btnLPrev = document.getElementById('laptopPrev');
+                const btnLNext = document.getElementById('laptopNext');
+
+                function moveLaptopSlide(step) {
+                    lSlides[currentLSlide].classList.remove('active');
+                    currentLSlide += step;
+
+                    if (currentLSlide >= lSlides.length) {
+                        window.location.href = 'guia-computadoras.html';
+                        return;
+                    }
+
+                    if (currentLSlide < 0) currentLSlide = 0;
+
+                    lSlides[currentLSlide].classList.add('active');
+                    
+                    btnLPrev.disabled = currentLSlide === 0;
+
+                    if (currentLSlide === lSlides.length - 1) {
+                        btnLNext.innerText = "Finalizar ✓";
+                    } else {
+                        btnLNext.innerText = "Siguiente →";
+                    }
+                }
+            </script>
+        </section>
+
+        <div class="nav-buttons">
+            <a href="guia-sensores.html" class="btn-nav">← Anterior: Sensores Humo/Gas</a>
+            <a href="guia-computadoras.html" class="btn-nav">Siguiente: Computadoras →</a>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía de Seguridad: Timbres con Video</title>
+    <link rel="icon" href="imagenes/candado.jpg" type="image/jpg">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-bg: #f0f4f8;      
+            --header-bg: #0a2540;       
+            --nav-bg: #113355;          
+            --text-main: #1c2d3d;       
+            --text-muted: #4a5c6d;      
+            --accent-color: #007bff;    
+            --accent-hover: #0056b3;    
+            --border-color: #cce0ff;    
+            --card-bg: #ffffff;         
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--primary-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .top-bar {
+            background-color: var(--header-bg);
+            color: #ffffff;
+            padding: 15px 5%;
+            font-size: 28px;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 120px auto 40px auto; 
+            padding: 0 20px;
+            background-color: white;
+            padding-bottom: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .btn-home {
+            display: inline-block;
+            background-color: var(--header-bg);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .guide-header {
+            text-align: center;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .guide-header h1 {
+            color: var(--header-bg);
+            font-size: 36px;
+        }
+
+        .guide-header img {
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        h2.seccion-titulo {
+            color: var(--nav-bg);
+            border-left: 5px solid var(--accent-color);
+            padding-left: 15px;
+            margin-top: 40px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 2px solid var(--border-color);
+        }
+
+        .btn-nav {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-nav:hover {
+            background-color: var(--accent-hover);
+        }
+
+        /* ============================================================
+           ESTILOS AISLADOS DEL SLIDER (TIMBRES CON VIDEO)
+        ============================================================ */
+        .doorbell-slider-container {
+            position: relative;
+            width: 100%;
+            margin: 40px 0;
+            background: #ffffff;
+            border: 3px solid var(--header-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            font-family: 'Urbanist', sans-serif;
+        }
+
+        .doorbell-slide {
+            display: none; 
+            padding: 50px 60px; 
+            min-height: 400px;
+            flex-direction: column;
+            justify-content: center;
+            animation: doorbellFade 0.4s ease;
+        }
+
+        .doorbell-slide.active {
+            display: flex; 
+        }
+
+        @keyframes doorbellFade {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .doorbell-slide-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 38px;
+            color: var(--header-bg);
+            margin: 0 0 20px 0;
+            line-height: 1.2;
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 10px;
+        }
+
+        .doorbell-text {
+            font-size: 21px;
+            color: var(--text-main);
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .doorbell-list {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .doorbell-list li {
+            font-size: 20px;
+            color: var(--text-main);
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .doorbell-content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        /* Contenedor de la imagen */
+        .doorbell-img-wrapper {
+            background: #f0f4f8;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            height: 250px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .doorbell-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .doorbell-controls {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 40px;
+            background: var(--primary-bg);
+            border-top: 2px solid var(--border-color);
+        }
+
+        .doorbell-btn-slider {
+            background: var(--header-bg);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .doorbell-btn-slider:hover:not(:disabled) {
+            background: var(--accent-hover);
+        }
+
+        .doorbell-btn-slider:disabled {
+            background: #cbd5e1;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="top-bar">Ciberseguridad Básica</div>
+    </header>
+
+    <main>
+        <a href="index.html#dispositivos" class="btn-home">← Volver a todos los dispositivos</a>
+
+        <div class="guide-header">
+            <h1>Proteger tu Timbres con Video</h1>
+            <img src="imagenes/timbres.png" alt="Timbres con Video" width="200" onerror="this.style.display='none'">
+        </div>
+
+        <section>
+            <h2 class="seccion-titulo">¿Por qué es un riesgo?</h2>
+            <p>El timbre con video graba la cara de todos tus vecinos, repartidores y amigos que te visitan. Si la cuenta no está bien protegida, un extraño podría saber exactamente a qué hora entras y sales de tu casa o incluso hablar con tus hijos a través del timbre para engañarlos.</p>
+        </section>
+
+        <section>
+            <h2 class="seccion-titulo">Manual Interactivo Paso a Paso</h2>
+            
+            <div class="doorbell-slider-container">
+                
+                <div class="doorbell-slide active" style="text-align: center;">
+                    <h1 style="font-family: 'Poppins', sans-serif; font-size: 46px; color: var(--header-bg); margin: 0 0 15px 0;">Timbres con Video:<br>Vigilancia Segura</h1>
+                    <p class="doorbell-text" style="color: var(--text-muted); font-size: 24px;">Proteja la entrada de su hogar contra el espionaje digital.</p>
+                </div>
+
+                <div class="doorbell-slide">
+                    <h2 class="doorbell-slide-title">¿Quién está observando?</h2>
+                    <div class="doorbell-content-grid">
+                        <div>
+                            <p class="doorbell-text">Un timbre inteligente mal configurado es una ventana pública a su vida privada. Los riesgos incluyen:</p>
+                            <ul class="doorbell-list" style="list-style-type: none; padding-left: 0;">
+                                <li>• <strong>Rastreo de hábitos:</strong> Saber cuándo sale y entra.</li>
+                                <li>• <strong>Intercepción de video:</strong> Acceso no autorizado al feed en vivo.</li>
+                                <li>• <strong>Robo de identidad:</strong> Uso de sus datos de red para otros ataques.</li>
+                            </ul>
+                        </div>
+                        <div class="doorbell-img-wrapper">
+                            <img src="imagenes/timbres1.png" alt="Riesgos del timbre">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="doorbell-slide">
+                    <h2 class="doorbell-slide-title">Paso 1: Doble Llave (2FA)</h2>
+                    <div class="doorbell-content-grid">
+                        <div class="doorbell-img-wrapper">
+                            <img src="imagenes/timbres2.png" alt="Doble llave 2FA">
+                        </div>
+                        <div>
+                            <p class="doorbell-text">La contraseña no es suficiente. Debe activar la Autenticación de Dos Pasos obligatoriamente:</p>
+                            <ul class="doorbell-list" style="list-style-type: none; padding-left: 0;">
+                                <li>• 1. Entre a la App de su timbre (Ring, Nest, Arlo).</li>
+                                <li>• 2. Vaya a Cuenta > Seguridad.</li>
+                                <li>• 3. Seleccione 2FA y vincule su número celular.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="doorbell-slide">
+                    <h2 class="doorbell-slide-title">Paso 2: Zonas de Privacidad</h2>
+                    <div class="doorbell-content-grid">
+                        <div>
+                            <p class="doorbell-text">No grabe lo que no le pertenece. Use la herramienta de Privacy Zones:</p>
+                            <ul class="doorbell-list" style="list-style-type: none; padding-left: 0;">
+                                <li>• En la App, busque "Configuración de video".</li>
+                                <li>• Dibuje cuadros negros sobre la casa del vecino o la vía pública.</li>
+                                <li>• El timbre dejará de capturar esas áreas, cumpliendo con la ley y protegiendo a su comunidad.</li>
+                            </ul>
+                        </div>
+                        <div class="doorbell-img-wrapper">
+                            <img src="imagenes/timbres3.png" alt="Zonas de Privacidad">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="doorbell-slide">
+                    <h2 class="doorbell-slide-title">Paso 3: Mantenimiento Crítico</h2>
+                    <p class="doorbell-text"><strong>Firmware:</strong> Revise actualizaciones cada 30 días. Los fabricantes parchan fallos de seguridad constantemente.</p>
+                    <p class="doorbell-text"><strong>Clave de App:</strong> Use una contraseña de 16 caracteres. Nunca recicle la clave de sus redes sociales o bancos.</p>
+                    <p class="doorbell-text"><strong>Alertas:</strong> Configure notificaciones para "Intentos de inicio de sesión fallidos". Sabrá si alguien intenta hackearlo.</p>
+                </div>
+
+                <div class="doorbell-slide" style="text-align: center;">
+                    <h2 class="doorbell-slide-title" style="border: none; padding: 0;">Fuentes de Información</h2>
+                    <ul class="doorbell-list" style="list-style-type: none; padding-left: 0; display: inline-block; text-align: left;">
+                        <li>- Consumer Reports: Digital Lab Privacy Standards</li>
+                        <li>- SafeHome.org: Doorbell Security Best Practices</li>
+                        <li>- Ring Security Center: 2FA & Privacy Zones Manual</li>
+                    </ul>
+                </div>
+
+                <div class="doorbell-controls">
+                    <button class="doorbell-btn-slider" id="doorbellPrev" onclick="moveDoorbellSlide(-1)" disabled>Anterior</button>
+                    <button class="doorbell-btn-slider" id="doorbellNext" onclick="moveDoorbellSlide(1)">Siguiente</button>
+                </div>
+            </div>
+
+            <script>
+                let currentDSlide = 0;
+                const dSlides = document.querySelectorAll('.doorbell-slide');
+                const btnDPrev = document.getElementById('doorbellPrev');
+                const btnDNext = document.getElementById('doorbellNext');
+
+                function moveDoorbellSlide(step) {
+                    dSlides[currentDSlide].classList.remove('active');
+                    currentDSlide += step;
+
+                    if (currentDSlide >= dSlides.length) {
+                        window.location.href = 'guia-monitores.html';
+                        return;
+                    }
+
+                    if (currentDSlide < 0) currentDSlide = 0;
+
+                    dSlides[currentDSlide].classList.add('active');
+                    
+                    btnDPrev.disabled = currentDSlide === 0;
+
+                    if (currentDSlide === dSlides.length - 1) {
+                        btnDNext.innerText = "Finalizar ✓";
+                    } else {
+                        btnDNext.innerText = "Siguiente →";
+                    }
+                }
+            </script>
+        </section>
+
+        <div class="nav-buttons">
+            <a href="guia-refrigerador.html" class="btn-nav">← Anterior: Refrigeradores</a>
+            <a href="guia-monitores.html" class="btn-nav">Siguiente: Monitores de Bebé →</a>
+        </div>
+    </main>
+</body>
+</html>

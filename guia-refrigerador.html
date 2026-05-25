@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía de Seguridad: Refrigeradores Smart</title>
+    <link rel="icon" href="imagenes/candado.jpg" type="image/jpg">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* MANTENIENDO TUS VARIABLES Y ESTILOS ORIGINALES */
+        :root {
+            --primary-bg: #f0f4f8;      
+            --header-bg: #0a2540;       
+            --nav-bg: #113355;          
+            --text-main: #1c2d3d;       
+            --text-muted: #4a5c6d;      
+            --accent-color: #007bff;    
+            --accent-hover: #0056b3;    
+            --border-color: #cce0ff;    
+            --card-bg: #ffffff;         
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--primary-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .top-bar {
+            background-color: var(--header-bg);
+            color: #ffffff;
+            padding: 15px 5%;
+            font-size: 28px;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 120px auto 40px auto; 
+            padding: 0 20px;
+            background-color: white;
+            padding-bottom: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .btn-home {
+            display: inline-block;
+            background-color: var(--header-bg);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .guide-header {
+            text-align: center;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .guide-header h1 {
+            color: var(--header-bg);
+            font-size: 36px;
+        }
+
+        .guide-header img {
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        h2.seccion-titulo {
+            color: var(--nav-bg);
+            border-left: 5px solid var(--accent-color);
+            padding-left: 15px;
+            margin-top: 40px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 2px solid var(--border-color);
+        }
+
+        .btn-nav {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-nav:hover {
+            background-color: var(--accent-hover);
+        }
+
+        /* ============================================================
+           ESTILOS AISLADOS DEL SLIDER (REFRIGERADORES SMART)
+        ============================================================ */
+        .fridge-slider-container {
+            position: relative;
+            width: 100%;
+            margin: 40px 0;
+            background: #ffffff;
+            border: 3px solid var(--header-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            font-family: 'Urbanist', sans-serif;
+        }
+
+        .fridge-slide {
+            display: none; 
+            padding: 50px 60px; 
+            min-height: 400px;
+            flex-direction: column;
+            justify-content: center;
+            animation: fridgeFade 0.4s ease;
+        }
+
+        .fridge-slide.active {
+            display: flex; 
+        }
+
+        @keyframes fridgeFade {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fridge-slide-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 38px;
+            color: var(--header-bg);
+            margin: 0 0 20px 0;
+            line-height: 1.2;
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 10px;
+        }
+
+        .fridge-text {
+            font-size: 21px;
+            color: var(--text-main);
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .fridge-content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        /* Contenedor de la imagen (Solo para la diapositiva 2) */
+        .fridge-img-wrapper {
+            background: #f0f4f8;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            height: 280px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .fridge-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .fridge-controls {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 40px;
+            background: var(--primary-bg);
+            border-top: 2px solid var(--border-color);
+        }
+
+        .fridge-btn-slider {
+            background: var(--header-bg);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .fridge-btn-slider:hover:not(:disabled) {
+            background: var(--accent-hover);
+        }
+
+        .fridge-btn-slider:disabled {
+            background: #cbd5e1;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="top-bar">Ciberseguridad Básica</div>
+    </header>
+
+    <main>
+        <a href="index.html#dispositivos" class="btn-home">← Volver a todos los dispositivos</a>
+
+        <div class="guide-header">
+            <h1>Proteger tu Refrigeradores Smart</h1>
+            <img src="imagenes/refrigerador.png" alt="Refrigeradores Smart" width="200" onerror="this.style.display='none'">
+        </div>
+
+        <section>
+            <h2 class="seccion-titulo">¿Por qué es un riesgo?</h2>
+            <p>Los refrigeradores modernos tienen pantallas y cámaras internas para que veas qué falta desde el súper. El riesgo es que, si alguien entra al sistema, puede espiar tu cocina a través de esas cámaras o usar la pantalla para mostrar mensajes falsos o engañosos.</p>
+        </section>
+
+        <section>
+            <h2 class="seccion-titulo">Manual Interactivo Paso a Paso</h2>
+            
+            <div class="fridge-slider-container">
+                
+                <div class="fridge-slide active" style="text-align: center;">
+                    <h1 style="font-family: 'Poppins', sans-serif; font-size: 46px; color: var(--header-bg); margin: 0 0 15px 0;">Refrigeradores Smart</h1>
+                    <p class="fridge-text" style="color: var(--text-muted); font-size: 24px; text-transform: uppercase;">Higiene Digital en la Cocina.</p>
+                </div>
+
+                <div class="fridge-slide">
+                    <h2 class="fridge-slide-title">Revisar Permisos de Cámara</h2>
+                    <div class="fridge-content-grid">
+                        <div class="fridge-text">
+                            <p>Muchos refrigeradores tienen cámaras internas (como View Inside) para ver si falta leche desde el supermercado.</p>
+                            <p>Asegúrese de que el permiso de cámara solo sea accesible para su celular y no esté compartido con aplicaciones desconocidas.</p>
+                        </div>
+                        <div class="fridge-img-wrapper">
+                            <img src="imagenes/refrigerador1.png" alt="Vista interna refrigerador">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fridge-slide">
+                    <h2 class="fridge-slide-title">Paso 1: Cuentas Dedicadas</h2>
+                    <p class="fridge-text" style="font-weight: bold; color: #ef4444;">No use su correo principal</p>
+                    <p class="fridge-text">Evite dejar su Gmail o cuenta de Facebook abierta en la pantalla del refrigerador. Si alguien entra a su cocina, podrá ver sus correos y citas privadas.</p>
+                    <div style="background: #f8fafc; border-left: 5px solid var(--accent-color); padding: 20px; margin-top: 20px;">
+                        <p class="fridge-text" style="margin: 0;"><strong>Acción:</strong> Cree una cuenta de correo solo para la "Familia" o la "Cocina" y úsela para el refrigerador.</p>
+                    </div>
+                </div>
+
+                <div class="fridge-slide" style="text-align: center;">
+                    <h2 class="fridge-slide-title" style="border: none; padding: 0;">Cocina Protegida</h2>
+                    <p class="fridge-text">Ahora su electrodoméstico es una herramienta útil y no una vulnerabilidad. ¡Felicidades!</p>
+                </div>
+
+                <div class="fridge-controls">
+                    <button class="fridge-btn-slider" id="fridgePrev" onclick="moveFridgeSlide(-1)" disabled>Anterior</button>
+                    <button class="fridge-btn-slider" id="fridgeNext" onclick="moveFridgeSlide(1)">Siguiente</button>
+                </div>
+            </div>
+
+            <script>
+                let currentFSlide = 0;
+                const fSlides = document.querySelectorAll('.fridge-slide');
+                const btnFPrev = document.getElementById('fridgePrev');
+                const btnFNext = document.getElementById('fridgeNext');
+
+                function moveFridgeSlide(step) {
+                    fSlides[currentFSlide].classList.remove('active');
+                    currentFSlide += step;
+
+                    if (currentFSlide >= fSlides.length) {
+                        window.location.href = 'guia-timbres.html'; // Siguiente página en tu flujo
+                        return;
+                    }
+
+                    if (currentFSlide < 0) currentFSlide = 0;
+
+                    fSlides[currentFSlide].classList.add('active');
+                    
+                    btnFPrev.disabled = currentFSlide === 0;
+
+                    if (currentFSlide === fSlides.length - 1) {
+                        btnFNext.innerText = "Finalizar ✓";
+                    } else {
+                        btnFNext.innerText = "Siguiente →";
+                    }
+                }
+            </script>
+        </section>
+
+        <div class="nav-buttons">
+            <a href="guia-consolas.html" class="btn-nav">← Anterior: Consolas</a>
+            <a href="index.html#dispositivos" class="btn-nav">Regresar a dispositivos</a>
+        </div>
+    </main>
+</body>
+</html>

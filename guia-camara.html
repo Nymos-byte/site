@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía de Seguridad: Cámaras de Seguridad Wi-Fi</title>
+    <link rel="icon" href="imagenes/candado.jpg" type="image/jpg">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;700&family=Azeret+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-bg: #f0f4f8;      
+            --header-bg: #0a2540;       
+            --nav-bg: #113355;          
+            --text-main: #1c2d3d;       
+            --text-muted: #4a5c6d;      
+            --accent-color: #007bff;    
+            --accent-hover: #0056b3;    
+            --border-color: #cce0ff;    
+            --card-bg: #ffffff;         
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--primary-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .top-bar {
+            background-color: var(--header-bg);
+            color: #ffffff;
+            padding: 15px 5%;
+            font-size: 28px;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 120px auto 40px auto; 
+            padding: 0 20px;
+            background-color: white;
+            padding-bottom: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .btn-home {
+            display: inline-block;
+            background-color: var(--header-bg);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .guide-header {
+            text-align: center;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .guide-header h1 {
+            color: var(--header-bg);
+            font-size: 36px;
+        }
+
+        .guide-header img {
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        h2.seccion-titulo {
+            color: var(--nav-bg);
+            border-left: 5px solid var(--accent-color);
+            padding-left: 15px;
+            margin-top: 40px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 2px solid var(--border-color);
+        }
+
+        .btn-nav {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-nav:hover {
+            background-color: var(--accent-hover);
+        }
+
+        /* ============================================================
+           ESTILOS AISLADOS DEL SLIDER (CÁMARAS DE SEGURIDAD)
+        ============================================================ */
+        .cam-slider-container {
+            position: relative;
+            width: 100%;
+            margin: 40px 0;
+            background: #ffffff;
+            border: 3px solid var(--header-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            font-family: 'Arimo', sans-serif;
+        }
+
+        .cam-slide {
+            display: none; 
+            padding: 50px 60px; 
+            min-height: 400px;
+            flex-direction: column;
+            justify-content: center;
+            animation: camFade 0.4s ease-in-out;
+        }
+
+        .cam-slide.active {
+            display: flex; 
+        }
+
+        @keyframes camFade {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .cam-slide-title {
+            font-size: 38px;
+            color: var(--header-bg);
+            margin-top: 0;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 10px;
+        }
+
+        .cam-text {
+            font-size: 20px;
+            color: var(--text-main);
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .cam-content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .cam-img-wrapper {
+            background: #f0f4f8;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            height: 250px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .cam-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .cam-list {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .cam-list li {
+            font-size: 20px;
+            color: var(--text-main);
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .cam-controls {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 40px;
+            background: var(--primary-bg);
+            border-top: 2px solid var(--border-color);
+        }
+
+        .cam-btn-slider {
+            background: var(--header-bg);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .cam-btn-slider:hover:not(:disabled) {
+            background: var(--accent-hover);
+        }
+
+        .cam-btn-slider:disabled {
+            background: #cbd5e1;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="top-bar">Ciberseguridad Básica</div>
+    </header>
+
+    <main>
+        <a href="index.html#dispositivos" class="btn-home">← Volver a todos los dispositivos</a>
+
+        <div class="guide-header">
+            <h1>Proteger tu Cámaras de Seguridad Wi-Fi</h1>
+            <img src="imagenes/camara.png" alt="Cámaras de Seguridad Wi-Fi" width="200" onerror="this.style.display='none'">
+        </div>
+
+        <section>
+            <h2 class="seccion-titulo">¿Por qué es un riesgo?</h2>
+            <p>Compramos cámaras para sentirnos seguros, pero si dejamos la contraseña de fábrica, cualquiera en internet puede buscar la marca de la cámara y verte dormir, hablar con tus hijos a través del altavoz o saber a qué hora tu casa está sola.</p>
+        </section>
+
+        <section>
+            <h2 class="seccion-titulo">Manual Interactivo Paso a Paso</h2>
+            
+            <div class="cam-slider-container">
+                
+                <div class="cam-slide active" style="text-align: center;">
+                    <h1 style="font-size: 44px; color: var(--header-bg); margin: 0 0 10px 0;">Ojos dentro de Casa</h1>
+                    <p class="cam-text">Asegure sus cámaras de vigilancia contra espías.</p>
+                </div>
+
+                <div class="cam-slide">
+                    <h2 class="cam-slide-title">El Espía Invisible</h2>
+                    <p class="cam-text">Existen páginas web que transmiten en vivo cámaras de casas reales de personas que nunca cambiaron su contraseña.</p>
+                    <p class="cam-text">No permita que su cuarto o sala sea público.</p>
+                </div>
+
+                <div class="cam-slide">
+                    <h2 class="cam-slide-title">Paso 1: Doble Candado (2FA)</h2>
+                    <div class="cam-content-grid">
+                        <div>
+                            <p class="cam-text" style="font-weight: bold;">Seguridad Obligatoria</p>
+                            <p class="cam-text">Configure la Verificación en Dos Pasos en la App de su cámara (Ring, Tapo, Wyze).</p>
+                            <p class="cam-text">Recibirá un código por SMS. Aunque alguien adivine su clave, no podrá entrar sin ese código. Es el escudo más fuerte que existe.</p>
+                        </div>
+                        <div class="cam-img-wrapper">
+                            <img src="imagenes/camara1.webp" alt="Doble Candado 2FA">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cam-slide">
+                    <h2 class="cam-slide-title">Paso 2: Modo Privacidad</h2>
+                    <p class="cam-text" style="font-weight: bold; margin-bottom: 5px;">Geofencing</p>
+                    <p class="cam-text" style="margin-bottom: 20px;">Configure la App para que, cuando detecte que usted llegó a casa (por el GPS del celular), las cámaras de interior se apaguen automáticamente.</p>
+                    <p class="cam-text" style="font-weight: bold; margin-bottom: 5px;">Zonas Privadas</p>
+                    <p class="cam-text">En los ajustes, dibuje cuadros negros sobre áreas que no quiera grabar, como la ventana del vecino o el pasillo de los dormitorios.</p>
+                </div>
+
+                <div class="cam-slide">
+                    <h2 class="cam-slide-title">Paso 3: Zonas de Privacidad</h2>
+                    <div class="cam-content-grid">
+                        <div class="cam-img-wrapper">
+                            <img src="imagenes/camara2.webp" alt="Zonas de Privacidad">
+                        </div>
+                        <div>
+                            <p class="cam-text" style="font-weight: bold;">No grabe lo que no debe</p>
+                            <p class="cam-text">Use la herramienta de "Privacy Zones" en su aplicación móvil.</p>
+                            <p class="cam-text">Dibuja máscaras sobre las partes del video que deben ser ignoradas. Esto protege la intimidad de su familia y evita problemas legales con los vecinos.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cam-slide">
+                    <h2 class="cam-slide-title">Revisiones Finales</h2>
+                    <ul class="cam-list">
+                        <li><strong>Cintas:</strong> Si no usa una cámara de interior por mucho tiempo, tápela con un post-it o cinta.</li>
+                        <li><strong>SD vs Nube:</strong> Si puede, use una tarjeta de memoria SD dentro de la cámara. Sus videos se quedan en su casa, no en internet.</li>
+                        <li><strong>Contraseñas:</strong> Nunca use la misma clave de su banco para sus cámaras.</li>
+                    </ul>
+                </div>
+
+                <div class="cam-slide" style="text-align: center;">
+                    <h2 class="cam-slide-title" style="border: none; margin-bottom: 10px;">Vigilancia Segura</h2>
+                    <p class="cam-text">Usted ahora es el dueño de sus imágenes y su intimidad.</p>
+                </div>
+
+                <div class="cam-controls">
+                    <button class="cam-btn-slider" id="camPrev" onclick="moveCamSlide(-1)" disabled>Anterior</button>
+                    <button class="cam-btn-slider" id="camNext" onclick="moveCamSlide(1)">Siguiente</button>
+                </div>
+            </div>
+
+            <script>
+                let currentCSlide = 0;
+                const cSlides = document.querySelectorAll('.cam-slide');
+                const btnCPrev = document.getElementById('camPrev');
+                const btnCNext = document.getElementById('camNext');
+
+                function moveCamSlide(step) {
+                    cSlides[currentCSlide].classList.remove('active');
+                    currentCSlide += step;
+
+                    if (currentCSlide >= cSlides.length) {
+                        window.location.href = 'guia-foco.html';
+                        return;
+                    }
+
+                    if (currentCSlide < 0) currentCSlide = 0;
+
+                    cSlides[currentCSlide].classList.add('active');
+                    
+                    btnCPrev.disabled = currentCSlide === 0;
+
+                    if (currentCSlide === cSlides.length - 1) {
+                        btnCNext.innerText = "Finalizar ✓";
+                    } else {
+                        btnCNext.innerText = "Siguiente →";
+                    }
+                }
+            </script>
+        </section>
+
+        <div class="nav-buttons">
+            <a href="guia-asistente.html" class="btn-nav">← Anterior: Asistentes</a>
+            <a href="guia-foco.html" class="btn-nav">Siguiente: Focos →</a>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía de Seguridad: Smartphone (Tu Celular)</title>
+    <link rel="icon" href="imagenes/candado.jpg" type="image/jpg">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-bg: #f0f4f8;      
+            --header-bg: #0a2540;       
+            --nav-bg: #113355;          
+            --text-main: #1c2d3d;       
+            --text-muted: #4a5c6d;      
+            --accent-color: #007bff;    
+            --accent-hover: #0056b3;    
+            --border-color: #cce0ff;    
+            --card-bg: #ffffff;         
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--primary-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .top-bar {
+            background-color: var(--header-bg);
+            color: #ffffff;
+            padding: 15px 5%;
+            font-size: 28px;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        main {
+            max-width: 900px; /* Ampliado ligeramente para acomodar el slider */
+            margin: 120px auto 40px auto; 
+            padding: 0 20px;
+            background-color: white;
+            padding-bottom: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .btn-home {
+            display: inline-block;
+            background-color: var(--header-bg);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .guide-header {
+            text-align: center;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .guide-header h1 {
+            color: var(--header-bg);
+            font-size: 36px;
+        }
+
+        .guide-header img {
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        h2.seccion-titulo {
+            color: var(--nav-bg);
+            border-left: 5px solid var(--accent-color);
+            padding-left: 15px;
+            margin-top: 40px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 2px solid var(--border-color);
+        }
+
+        .btn-nav {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .btn-nav:hover {
+            background-color: var(--accent-hover);
+        }
+
+        /* ============================================================
+           ESTILOS AISLADOS DEL SLIDER "SMARTPHONE"
+        ============================================================ */
+        .phone-slider-container {
+            position: relative;
+            width: 100%;
+            margin: 40px 0;
+            background: #0f172a; /* Fondo oscuro elegante */
+            color: #f5f5f5;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            font-family: 'Urbanist', sans-serif;
+            border-bottom: 6px solid #deff9a;
+        }
+
+        .phone-slide {
+            display: none; 
+            padding: 50px 60px; 
+            min-height: 450px; 
+            animation: phoneFade 0.4s ease;
+        }
+
+        .phone-slide.active {
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center;
+        }
+
+        @keyframes phoneFade {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .phone-main-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 50px;
+            color: #f5f5f5;
+            text-align: center;
+            margin: 0 0 15px 0;
+            line-height: 1.1;
+        }
+
+        .phone-main-title span, .phone-slide-header span {
+            color: #deff9a; /* Acento verde lima */
+        }
+
+        .phone-subtitle {
+            text-align: center;
+            font-size: 22px;
+            color: #daffde;
+            margin: 0;
+        }
+
+        .phone-slide-header {
+            font-family: 'Poppins', sans-serif;
+            font-size: 34px;
+            color: #f5f5f5;
+            border-bottom: 2px dashed #deff9a;
+            padding-bottom: 10px;
+            margin: 0 0 30px 0;
+        }
+
+        .phone-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .phone-content-single {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .phone-box {
+            background: #1e293b;
+            padding: 30px;
+            border-radius: 16px;
+            border-left: 5px solid #deff9a;
+        }
+
+        .phone-box p {
+            margin: 0 0 15px 0;
+            font-size: 20px;
+            color: #daffde;
+            line-height: 1.5;
+        }
+        
+        .phone-box h3 {
+            color: #deff9a;
+            margin-top: 0;
+            font-size: 24px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .phone-box ul {
+            margin: 0;
+            padding-left: 20px;
+            color: #daffde;
+            font-size: 19px;
+            line-height: 1.6;
+        }
+        .phone-box li {
+            margin-bottom: 10px;
+        }
+
+        .phone-img-wrapper {
+            width: 100%;
+            height: 320px;
+            background: #000;
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid #334155;
+        }
+
+        .phone-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .phone-grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .phone-grid-box {
+            background: #1e293b;
+            padding: 25px;
+            border-radius: 16px;
+            text-align: left;
+        }
+        
+        .phone-grid-box i {
+            font-size: 35px;
+            color: #deff9a;
+            margin-bottom: 15px;
+        }
+
+        .phone-controls {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 40px;
+            background: #020617;
+            border-top: 1px solid #1e293b;
+        }
+
+        .phone-btn {
+            background: transparent;
+            color: #deff9a;
+            border: 2px solid #deff9a;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Urbanist', sans-serif;
+        }
+
+        .phone-btn:hover:not(:disabled) { 
+            background: #deff9a; 
+            color: #000;
+        }
+        .phone-btn:disabled { 
+            border-color: #334155; 
+            color: #334155; 
+            cursor: not-allowed; 
+        }
+        .phone-btn.finish { background: #10b981; border-color: #10b981; color: white; }
+        .phone-btn.finish:hover { background: #059669; border-color: #059669; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="top-bar">Ciberseguridad Básica</div>
+    </header>
+
+    <main>
+        <a href="index.html#dispositivos" class="btn-home">← Volver a todos los dispositivos</a>
+
+        <div class="guide-header">
+            <img src="imagenes/smartphone.png" alt="Smartphone" width="120" onerror="this.style.display='none'">
+            <h1 style="margin-top: 10px; margin-bottom: 0;">Proteger tu Smartphone (Tu Celular)</h1>
+        </div>
+
+        <section>
+            <h2 class="seccion-titulo">¿Por qué es un riesgo?</h2>
+            <p>Llevamos nuestra vida entera en el celular: fotos personales, correos del trabajo, conversaciones íntimas y, lo más importante, las aplicaciones del banco. Si alguien accede a él, puede robar tu identidad y tu dinero en minutos.</p>
+        </section>
+
+        <section>
+            <h2 class="seccion-titulo">Manual Interactivo Paso a Paso</h2>
+            
+            <div class="phone-slider-container">
+                
+                <div class="phone-slide active">
+                    <div class="phone-content-single">
+                        <i class="fa-solid fa-mobile-screen" style="font-size: 70px; color: #deff9a; margin-bottom: 20px;"></i>
+                        <h1 class="phone-main-title">Smartphone:<br>Su Vida en un <span>Bolsillo</span></h1>
+                        <p class="phone-subtitle">Protección total de sus fotos, bancos y mensajes.</p>
+                    </div>
+                </div>
+
+                <div class="phone-slide">
+                    <h2 class="phone-slide-header">¿Qué pasa si lo <span>pierde</span>?</h2>
+                    <div class="phone-content-single">
+                        <div class="phone-box" style="max-width: 700px; text-align: center; padding: 40px;">
+                            <i class="fa-solid fa-triangle-exclamation" style="font-size: 60px; color: #ef4444; margin-bottom: 20px;"></i>
+                            <p style="font-size: 26px;">Un celular sin bloqueo es como dejar su diario y su cartera abiertos en medio de la calle.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="phone-slide">
+                    <h2 class="phone-slide-header">Paso 1: El Candado <span>Biométrico</span></h2>
+                    <div class="phone-content">
+                        <div class="phone-box">
+                            <h3>Huella o Rostro</h3>
+                            <p>Es el método más seguro y rápido. Configúrelo en Ajustes > Seguridad.</p>
+                            <p>Evite los "patrones de dibujo". La grasa de los dedos deja el rastro en la pantalla y es fácil de adivinar para un ladrón.</p>
+                        </div>
+                        <div class="phone-img-wrapper" style="border-radius: 50%; width: 320px; height: 320px; margin: 0 auto; border: 4px solid #deff9a;">
+                            <img src="https://bloygo.yoigo.com/embed/ae2d1341c9d4b798808f55cebf471f941649105128/reconocimiento-facial-en-Android.png?imagick=1&size=500" alt="Reconocimiento facial">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="phone-slide">
+                    <h2 class="phone-slide-header">Paso 2: PIN de <span>6 Números</span></h2>
+                    <div class="phone-content">
+                        <div class="phone-img-wrapper">
+                            <img src="https://i.blogs.es/8ce620/notificaciones-iphone-alarma-portada/500_333.webp" alt="Notificaciones seguras">
+                        </div>
+                        <div class="phone-box">
+                            <h3>No use fechas de nacimiento</h3>
+                            <p>El PIN es su segunda línea de defensa si la huella falla.</p>
+                            <ul>
+                                <li>No use: 123456 o su año de nacimiento.</li>
+                                <li>Use un número que solo usted sepa.</li>
+                                <li><strong>Vital:</strong> Escríbalo en un papel y guárdelo en su caja fuerte o un lugar seguro en casa, ¡nunca lo olvide!</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="phone-slide">
+                    <h2 class="phone-slide-header">Reglas de <span>Oro</span></h2>
+                    <div class="phone-grid-3">
+                        <div class="phone-grid-box">
+                            <i class="fa-brands fa-google-play"></i>
+                            <h3 style="color: #deff9a; font-size: 20px; margin: 0 0 10px 0;">Apps Oficiales</h3>
+                            <p style="font-size: 16px; color: #daffde; margin: 0;">Solo instale aplicaciones desde la "Play Store" o "App Store". Nunca baje nada de enlaces que le manden por WhatsApp.</p>
+                        </div>
+                        <div class="phone-grid-box">
+                            <i class="fa-solid fa-arrows-rotate"></i>
+                            <h3 style="color: #deff9a; font-size: 20px; margin: 0 0 10px 0;">Actualice</h3>
+                            <p style="font-size: 16px; color: #daffde; margin: 0;">Si ve una notificación de "Actualización disponible", instálela de inmediato. Son escudos nuevos para su teléfono.</p>
+                        </div>
+                        <div class="phone-grid-box">
+                            <i class="fa-solid fa-location-crosshairs"></i>
+                            <h3 style="color: #deff9a; font-size: 20px; margin: 0 0 10px 0;">Rastreo</h3>
+                            <p style="font-size: 16px; color: #daffde; margin: 0;">Active "Encontrar mi dispositivo". Si lo pierde, podrá bloquearlo o borrar su información desde otra computadora.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="phone-slide">
+                    <div class="phone-content-single">
+                        <i class="fa-solid fa-mobile-button" style="font-size: 80px; color: #deff9a; margin-bottom: 20px;"></i>
+                        <h1 class="phone-main-title">Celular <span>Blindado</span></h1>
+                        <p class="phone-subtitle" style="max-width: 600px; margin-top: 15px;">Usted ahora tiene el control de su información.<br>Su vida digital está a salvo.</p>
+                    </div>
+                </div>
+
+                <div class="phone-controls">
+                    <button class="phone-btn" id="phonePrev" onclick="movePhone(-1)" disabled>← Anterior</button>
+                    <button class="phone-btn" id="phoneNext" onclick="movePhone(1)">Siguiente →</button>
+                </div>
+            </div>
+
+            <script>
+                let currentPSlide = 0;
+                const pSlides = document.querySelectorAll('.phone-slide');
+                const btnPPrev = document.getElementById('phonePrev');
+                const btnPNext = document.getElementById('phoneNext');
+
+                function movePhone(step) {
+                    pSlides[currentPSlide].classList.remove('active');
+                    currentPSlide += step;
+
+                    if (currentPSlide >= pSlides.length) {
+                        window.location.href = 'guia-tv.html';
+                        return;
+                    }
+
+                    if (currentPSlide < 0) currentPSlide = 0;
+
+                    pSlides[currentPSlide].classList.add('active');
+                    
+                    btnPPrev.disabled = currentPSlide === 0;
+
+                    if (currentPSlide === 0) {
+                        btnPNext.innerText = "Siguiente →";
+                        btnPNext.classList.remove('finish');
+                    } else if (currentPSlide === pSlides.length - 1) {
+                        btnPNext.innerText = "Finalizar ✓";
+                        btnPNext.classList.add('finish');
+                    } else {
+                        btnPNext.innerText = "Siguiente →";
+                        btnPNext.classList.remove('finish');
+                    }
+                }
+            </script>
+        </section>
+
+        <div class="nav-buttons">
+            <a href="guia-router.html" class="btn-nav">← Anterior: Router</a>
+            <a href="guia-tv.html" class="btn-nav">Siguiente: Smart TV →</a>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía de Seguridad: Computadoras de Escritorio</title>
+    <link rel="icon" href="imagenes/candado.jpg" type="image/jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary-bg: #f0f4f8;      
+            --header-bg: #0a2540;       
+            --nav-bg: #113355;          
+            --text-main: #1c2d3d;       
+            --text-muted: #4a5c6d;      
+            --accent-color: #007bff;    
+            --accent-hover: #0056b3;    
+            --border-color: #cce0ff;    
+            --card-bg: #ffffff;         
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--primary-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .top-bar {
+            background-color: var(--header-bg);
+            color: #ffffff;
+            padding: 15px 5%;
+            font-size: 28px;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        main {
+            max-width: 900px;
+            margin: 120px auto 40px auto; 
+            padding: 0 20px;
+            background-color: white;
+            padding-bottom: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .btn-home {
+            display: inline-block;
+            background-color: var(--header-bg);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .guide-header {
+            text-align: center;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .guide-header h1 {
+            color: var(--header-bg);
+            font-size: 36px;
+        }
+
+        .guide-header img {
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        h2 {
+            color: var(--nav-bg);
+            border-left: 5px solid var(--accent-color);
+            padding-left: 15px;
+            margin-top: 40px;
+        }
+
+        /* ============================================================
+           DISEÑO PREMIUM DEL SLIDER (ESTILO CONSULTORÍA)
+        ============================================================ */
+        .slider-wrapper {
+            position: relative;
+            width: 100%;
+            margin: 40px 0;
+            background: #000; /* Fondo oscuro elegante */
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            font-family: 'Urbanist', sans-serif;
+            border: 1px solid #333;
+        }
+
+        .slide {
+            display: none;
+            min-height: 480px;
+            padding: 50px;
+            flex-direction: column;
+            justify-content: center;
+            animation: slideFade 0.5s ease-out;
+            color: #fff;
+        }
+
+        .slide.active {
+            display: flex;
+        }
+
+        @keyframes slideFade {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .slide-layout-title {
+            text-align: center;
+        }
+
+        .slide-layout-title h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 52px;
+            line-height: 1.1;
+            margin: 0;
+            color: #deff9a; /* Color acento lima consultoría */
+        }
+
+        .slide-layout-title p {
+            font-size: 24px;
+            color: #daffde;
+            margin-top: 20px;
+        }
+
+        .slide-header {
+            font-family: 'Poppins', sans-serif;
+            font-size: 34px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            border-left: 6px solid #deff9a;
+            padding-left: 20px;
+            color: #f5f5f5;
+        }
+
+        .slide-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .slide-text p {
+            font-size: 19px;
+            color: #daffde;
+            margin-bottom: 15px;
+        }
+
+        .slide-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .slide-list li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 15px;
+            font-size: 18px;
+            color: #fff;
+        }
+
+        .slide-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #deff9a;
+            font-weight: bold;
+        }
+
+        .slide-image {
+            width: 100%;
+            height: 280px;
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slider-controls {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 50px;
+            background: #111;
+            border-top: 1px solid #222;
+        }
+
+        .btn-slide {
+            background: #deff9a;
+            color: #000;
+            border: none;
+            padding: 10px 30px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-slide:hover:not(:disabled) {
+            background: #fff;
+            transform: scale(1.05);
+        }
+
+        .btn-slide:disabled {
+            background: #333;
+            color: #666;
+            cursor: not-allowed;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 2px solid var(--border-color);
+        }
+
+        .btn-nav {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="top-bar">Ciberseguridad Básica</div>
+    </header>
+
+    <main>
+        <a href="index.html#dispositivos" class="btn-home">← Volver a todos los dispositivos</a>
+
+        <div class="guide-header">
+            <h1>Proteger tu Computadoras de Escritorio</h1>
+            <img src="imagenes/computadoras.png" alt="Computadoras de Escritorio" width="200">
+        </div>
+
+        <section>
+            <h2>Manual de Seguridad Avanzada</h2>
+            
+            <div class="slider-wrapper">
+                
+                <div class="slide active">
+                    <div class="slide-layout-title">
+                        <h1>Computadoras:<br>El Fuerte Digital</h1>
+                        <p>Proteja sus archivos familiares del secuestro de datos (Ransomware).</p>
+                    </div>
+                </div>
+
+                <div class="slide">
+                    <h2 class="slide-header">La Puerta Trasera del Escritorio</h2>
+                    <div class="slide-grid">
+                        <div class="slide-text">
+                            <p>Al estar siempre encendidas y conectadas, son el blanco principal para:</p>
+                            <ul class="slide-list">
+                                <li><strong>Ransomware:</strong> Virus que bloquean sus fotos y piden dinero.</li>
+                                <li><strong>Botnets:</strong> Uso de su equipo para atacar a otros sin que sepa.</li>
+                                <li><strong>Fuga de datos:</strong> Robo de claves guardadas en el navegador.</li>
+                            </ul>
+                        </div>
+                        <div class="slide-image">
+                            <img src="imagenes/computadoras1.png" alt="Riesgos informáticos">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slide">
+                    <h2 class="slide-header">Paso 1: Estrategia de Respaldo 3-2-1</h2>
+                    <div class="slide-grid">
+                        <div class="slide-image">
+                            <img src="imagenes/computadoras2.jpg" alt="Estrategia de respaldo">
+                        </div>
+                        <div class="slide-text">
+                            <p style="font-style: italic; color: #deff9a;">"Si un virus infecta su PC, el disco duro USB debe estar desconectado para que no se infecte también."</p>
+                            <ul class="slide-list">
+                                <li>3 Copias de sus datos.</li>
+                                <li>2 Medios diferentes (Disco duro USB y Nube).</li>
+                                <li>1 Copia fuera de casa (Físicamente en otro lugar).</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slide">
+                    <h2 class="slide-header">Paso 2: Firewall y Protección</h2>
+                    <div class="slide-grid">
+                        <div class="slide-text">
+                            <ul class="slide-list">
+                                <li><strong>Firewall:</strong> Verifique que "Protección de red" esté en verde en Ajustes > Seguridad.</li>
+                                <li><strong>Cuenta Estándar:</strong> No navegue como "Administrador". Use una cuenta estándar para limitar permisos de virus.</li>
+                                <li><strong>Antivirus:</strong> Examen completo del sistema cada domingo.</li>
+                            </ul>
+                        </div>
+                        <div class="slide-image">
+                            <img src="imagenes/computadoras3.png" alt="Protección firewall">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slider-controls">
+                    <button class="btn-slide" id="btn-prev" onclick="moveSlide(-1)" disabled>Anterior</button>
+                    <button class="btn-slide" id="btn-next" onclick="moveSlide(1)">Siguiente</button>
+                </div>
+            </div>
+
+            <script>
+                let currentIdx = 0;
+                const slides = document.querySelectorAll('.slide');
+                const btnPrev = document.getElementById('btn-prev');
+                const btnNext = document.getElementById('btn-next');
+
+                function moveSlide(step) {
+                    slides[currentIdx].classList.remove('active');
+                    currentIdx += step;
+
+                    if (currentIdx >= slides.length) {
+                        window.location.href = 'guia-tablets.html';
+                        return;
+                    }
+
+                    slides[currentIdx].classList.add('active');
+                    
+                    btnPrev.disabled = currentIdx === 0;
+                    btnNext.innerText = currentIdx === slides.length - 1 ? 'Finalizar ✓' : 'Siguiente';
+                }
+            </script>
+        </section>
+
+        <div class="nav-buttons">
+            <a href="guia-laptops.html" class="btn-nav">← Anterior: Laptops</a>
+            <a href="guia-tablets.html" class="btn-nav">Siguiente: Tablets y iPads →</a>
+        </div>
+    </main>
+</body>
+</html>

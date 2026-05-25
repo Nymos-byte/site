@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía de Seguridad: Router</title>
+    <link rel="icon" href="imagenes/candado.jpg" type="image/jpg">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-bg: #f0f4f8;      
+            --header-bg: #0a2540;       
+            --nav-bg: #113355;          
+            --text-main: #1c2d3d;       
+            --text-muted: #4a5c6d;      
+            --accent-color: #007bff;    
+            --accent-hover: #0056b3;    
+            --border-color: #cce0ff;    
+            --card-bg: #ffffff;         
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--primary-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .top-bar {
+            background-color: var(--header-bg);
+            color: #ffffff;
+            padding: 15px 5%;
+            font-size: 28px;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 120px auto 40px auto; 
+            padding: 0 20px;
+            background-color: white;
+            padding-bottom: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .btn-home {
+            display: inline-block;
+            background-color: var(--header-bg);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .guide-header {
+            text-align: center;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .guide-header h1 {
+            color: var(--header-bg);
+            font-size: 36px;
+        }
+
+        .guide-header img {
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        h2.seccion-titulo {
+            color: var(--nav-bg);
+            border-left: 5px solid var(--accent-color);
+            padding-left: 15px;
+            margin-top: 40px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 2px solid var(--border-color);
+        }
+
+        .btn-nav {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .btn-nav:hover {
+            background-color: var(--accent-hover);
+        }
+
+        /* ============================================================
+           ESTILOS AISLADOS DEL SLIDER "AZUL CORPORATIVO" (ROUTER)
+        ============================================================ */
+        .router-slider-container {
+            position: relative;
+            width: 100%;
+            margin: 40px 0;
+            background: #ffffff;
+            border: 3px solid var(--header-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .router-slide {
+            display: none; 
+            padding: 40px 50px; 
+            min-height: 420px; 
+            animation: routerFade 0.4s ease;
+        }
+
+        .router-slide.active {
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center;
+        }
+
+        @keyframes routerFade {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .router-main-title {
+            font-family: 'Merriweather', serif;
+            font-size: 44px;
+            color: var(--header-bg);
+            text-align: center;
+            margin: 0 0 15px 0;
+            line-height: 1.2;
+        }
+
+        .router-subtitle {
+            text-align: center;
+            font-size: 20px;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        .router-slide-header {
+            font-family: 'Merriweather', serif;
+            font-size: 28px;
+            color: var(--header-bg);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin: 0 0 25px 0;
+        }
+
+        .router-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .router-content-single {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .router-box {
+            background: var(--primary-bg);
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 6px solid var(--accent-color);
+        }
+
+        .router-box p {
+            margin: 0 0 15px 0;
+            font-size: 17px;
+            color: var(--text-main);
+        }
+        .router-box p:last-child { margin-bottom: 0; }
+        
+        .router-box ul {
+            margin: 0;
+            padding-left: 20px;
+            color: var(--text-main);
+            font-size: 17px;
+        }
+        .router-box li {
+            margin-bottom: 8px;
+        }
+
+        .router-img-wrapper {
+            width: 100%;
+            height: 260px;
+            background: #f8fafc;
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid var(--border-color);
+        }
+
+        .router-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .router-controls {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 40px;
+            background: var(--primary-bg);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .router-btn {
+            background: var(--header-bg);
+            color: #fff;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .router-btn:hover:not(:disabled) { background: var(--accent-color); }
+        .router-btn:disabled { background: #cbd5e1; cursor: not-allowed; opacity: 0.7; }
+        .router-btn.finish { background: #10b981; }
+        .router-btn.finish:hover { background: #059669; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="top-bar">Ciberseguridad Básica</div>
+    </header>
+
+    <main>
+        <a href="index.html#dispositivos" class="btn-home">← Volver a todos los dispositivos</a>
+
+        <div class="guide-header">
+            <h1>Proteger tu Router</h1>
+            <img src="imagenes/router.png" alt="Router" width="200" onerror="this.style.display='none'">
+        </div>
+
+        <section>
+            <h2 class="seccion-titulo">Manual Interactivo Paso a Paso</h2>
+            
+            <div class="router-slider-container">
+                
+                <div class="router-slide active">
+                    <h1 class="router-main-title">El Corazón: El Router</h1>
+                    <p class="router-subtitle">Guía definitiva para blindar la puerta principal de su internet.</p>
+                </div>
+
+                <div class="router-slide">
+                    <h2 class="router-slide-header">¿Por qué es un riesgo?</h2>
+                    <div class="router-content-single router-box">
+                        <p>El router es el policía que vigila quién entra y sale de su casa digital. Si el policía usa una llave que todos conocen, cualquiera puede entrar sin permiso.</p>
+                    </div>
+                </div>
+
+                <div class="router-slide">
+                    <h2 class="router-slide-header">Paso 1: Cambie la Llave de Fábrica</h2>
+                    <div class="router-content">
+                        <div class="router-box">
+                            <h3 style="color: var(--accent-color); margin-top: 0; margin-bottom: 10px;">No use la clave de la etiqueta</h3>
+                            <p>Todos los routers tienen una etiqueta pegada detrás con una contraseña llamada "Admin Password" o "Clave de Administrador".</p>
+                            <ul>
+                                <li>Los hackers tienen listas con todas estas claves.</li>
+                                <li>Dejarla así es como dejar la llave bajo el tapete.</li>
+                                <li><strong>Acción:</strong> Entre a la configuración y cámbiela por una frase larga y única.</li>
+                            </ul>
+                        </div>
+                        <div class="router-img-wrapper">
+                            <img src="imagenes/router1.jpg" alt="Etiqueta del router">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="router-slide">
+                    <h2 class="router-slide-header">Cómo entrar a la configuración</h2>
+                    <div class="router-content-single router-box">
+                        <p><strong>Conéctese:</strong> Asegúrese de estar conectado al Wi-Fi de su casa.</p>
+                        <p><strong>Abra el navegador:</strong> En su computadora o celular, abra Chrome o Safari y escriba los números 192.168.1.1 (o los que indique su etiqueta).</p>
+                        <p><strong>Inicie sesión:</strong> Use los datos de la etiqueta por última vez para entrar al menú principal.</p>
+                        <p><strong>Busque "Seguridad":</strong> Localice el apartado de "Cambiar contraseña de Administrador".</p>
+                    </div>
+                </div>
+
+                <div class="router-slide">
+                    <h2 class="router-slide-header">Paso 2: Use la Red de Invitados</h2>
+                    <div class="router-content">
+                        <div class="router-box">
+                            <h3 style="color: var(--accent-color); margin-top: 0; margin-bottom: 10px;">Aísle sus aparatos inseguros</h3>
+                            <p>Su router permite crear una segunda red Wi-Fi. Úsela para:</p>
+                            <ul>
+                                <li>Visitas que llegan a casa.</li>
+                                <li>Focos, cámaras y otros aparatos inteligentes.</li>
+                            </ul>
+                        </div>
+                        <div class="router-img-wrapper">
+                            <img src="imagenes/router2.jpg" alt="Red de invitados">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="router-slide">
+                    <h2 class="router-slide-header">Mantenimiento Vital</h2>
+                    <div class="router-content-single router-box">
+                        <h3 style="color: var(--accent-color); margin-top: 0; margin-bottom: 10px;">1 Vez al mes: Actualice el "Firmware"</h3>
+                        <p>El firmware es el cerebro del router. Los fabricantes lanzan "parches" para cerrar agujeros que los hackers descubren.</p>
+                        <p>En el menú de configuración, busque el botón "Check for Updates" o "Actualizar Sistema". Presionarlo le dará un escudo nuevo contra las últimas amenazas.</p>
+                    </div>
+                </div>
+
+                <div class="router-slide">
+                    <div style="text-align: center; margin-top: 40px;">
+                        <i class="fa-solid fa-shield-halved" style="font-size: 80px; color: #10b981; margin-bottom: 20px;"></i>
+                        <h1 class="router-main-title" style="color: #10b981;">¡Red Protegida!</h1>
+                        <p class="router-subtitle" style="color: var(--text-main); font-size: 22px;">Su router ahora es una muralla contra intrusos.</p>
+                        <p style="margin-top: 20px; font-weight: bold; color: var(--text-muted);">Recuerde: Si tiene dudas, consulte con su proveedor de internet.</p>
+                    </div>
+                </div>
+
+                <div class="router-controls">
+                    <button class="router-btn" id="routerPrev" onclick="moveRouter(-1)" disabled>← Anterior</button>
+                    <button class="router-btn" id="routerNext" onclick="moveRouter(1)">Siguiente →</button>
+                </div>
+            </div>
+
+            <script>
+                let currentRSlide = 0;
+                const rSlides = document.querySelectorAll('.router-slide');
+                const btnRPrev = document.getElementById('routerPrev');
+                const btnRNext = document.getElementById('routerNext');
+
+                function moveRouter(step) {
+                    rSlides[currentRSlide].classList.remove('active');
+                    currentRSlide += step;
+
+                    if (currentRSlide >= rSlides.length) {
+                        window.location.href = 'guia-celular.html';
+                        return;
+                    }
+
+                    if (currentRSlide < 0) currentRSlide = 0;
+
+                    rSlides[currentRSlide].classList.add('active');
+                    
+                    btnRPrev.disabled = currentRSlide === 0;
+
+                    if (currentRSlide === 0) {
+                        btnRNext.innerText = "Siguiente →";
+                        btnRNext.classList.remove('finish');
+                    } else if (currentRSlide === rSlides.length - 1) {
+                        btnRNext.innerText = "Finalizar ✓";
+                        btnRNext.classList.add('finish');
+                    } else {
+                        btnRNext.innerText = "Siguiente →";
+                        btnRNext.classList.remove('finish');
+                    }
+                }
+            </script>
+        </section>
+
+        <div class="nav-buttons">
+            <a href="index.html#dispositivos" class="btn-nav">← Regresar a dispositivos</a>
+            <a href="guia-celular.html" class="btn-nav">Siguiente: Smartphone →</a>
+        </div>
+    </main>
+</body>
+</html>

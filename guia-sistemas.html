@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía de Seguridad: Sistemas de Alarma Smart</title>
+    <link rel="icon" href="imagenes/candado.jpg" type="image/jpg">
+
+    <style>
+
+        :root {
+            --primary-bg: #f0f4f8;
+            --header-bg: #0a2540;
+            --nav-bg: #113355;
+            --text-main: #1c2d3d;
+            --text-muted: #4a5c6d;
+            --accent-color: #007bff;
+            --accent-hover: #0056b3;
+            --border-color: #cce0ff;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI',
+            Roboto, Oxygen, Ubuntu, Cantarell,
+            'Open Sans', 'Helvetica Neue', sans-serif;
+
+            margin: 0;
+            padding: 0;
+            background-color: var(--primary-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .top-bar {
+            background-color: var(--header-bg);
+            color: #ffffff;
+            padding: 15px 5%;
+            font-size: 28px;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 120px auto 40px auto;
+            padding: 0 20px;
+            background-color: white;
+            padding-bottom: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .btn-home {
+            display: inline-block;
+            background-color: var(--header-bg);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .guide-header {
+            text-align: center;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .guide-header h1 {
+            color: var(--header-bg);
+            font-size: 36px;
+        }
+
+        .guide-header img {
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        h2 {
+            color: var(--nav-bg);
+            border-left: 5px solid var(--accent-color);
+            padding-left: 15px;
+            margin-top: 40px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 2px solid var(--border-color);
+        }
+
+        .btn-nav {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .btn-nav:hover {
+            background-color: var(--accent-hover);
+        }
+
+        /* =========================================================
+           SLIDER SISTEMAS DE ALARMA
+        ========================================================= */
+
+        .alarm-section-title {
+            color: var(--nav-bg);
+            border-left: 5px solid var(--accent-color);
+            padding-left: 15px;
+            margin-top: 40px;
+        }
+
+        .alarm-slider-container {
+            position: relative;
+            width: 100%;
+            margin: 40px 0;
+            background: #eef4fb;
+            border: 3px solid #0a2540;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 10px 10px 0 rgba(10, 37, 64, 0.15);
+        }
+
+        .alarm-slide {
+            display: none;
+            padding: 50px 60px;
+            min-height: 420px;
+            flex-direction: column;
+            justify-content: center;
+            animation: alarmFade 0.4s ease-in-out;
+        }
+
+        .alarm-slide.active {
+            display: flex;
+        }
+
+        @keyframes alarmFade {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .alarm-slide-title {
+            font-size: 42px;
+            color: #0a2540;
+            margin: 0 0 25px 0;
+            line-height: 1.2;
+            border-bottom: 3px solid #0a2540;
+            padding-bottom: 10px;
+        }
+
+        .alarm-text {
+            font-size: 21px;
+            color: #1c2d3d;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .alarm-content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .alarm-img-wrapper {
+            width: 100%;
+            height: 260px;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid #0a2540;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .alarm-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .alarm-controls {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 40px;
+            background: rgba(10, 37, 64, 0.06);
+            border-top: 2px solid #0a2540;
+        }
+
+        .alarm-btn-slider {
+            background: #0a2540;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .alarm-btn-slider:disabled {
+            background: #9fb2c7;
+            cursor: not-allowed;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <header>
+        <div class="top-bar">
+            Ciberseguridad Básica
+        </div>
+    </header>
+
+    <main>
+
+        <a href="index.html#dispositivos" class="btn-home">
+            ← Volver a todos los dispositivos
+        </a>
+
+        <div class="guide-header">
+
+            <h1>
+                Proteger tu Sistemas de Alarma Smart
+            </h1>
+
+            <img
+                src="imagenes/alarmas.png"
+                alt="Sistemas de Alarma Smart"
+                width="200"
+            >
+
+        </div>
+
+        <section>
+
+            <h2>
+                ¿Por qué es un riesgo?
+            </h2>
+
+            <p>
+                Tu alarma digital controla la seguridad física de toda tu casa.
+                Si un intruso digital hackea el sistema, podría desactivar
+                las sirenas y los sensores de movimiento desde la calle
+                antes de intentar entrar a robar.
+            </p>
+
+        </section>
+
+        <section>
+
+            <h2 class="alarm-section-title">
+                Manual Interactivo Paso a Paso
+            </h2>
+
+            <div class="alarm-slider-container">
+
+                <!-- SLIDE 1 -->
+
+                <div class="alarm-slide active" style="text-align:center;">
+
+                    <h1 style="font-size:48px; color:#0a2540; margin:0 0 15px 0;">
+
+                        Sistemas de Alarma:
+                        <br>
+                        Blindaje Digital
+
+                    </h1>
+
+                    <p class="alarm-text" style="color:#4a5c6d;">
+
+                        Evite que desactiven su seguridad física
+                        desde internet.
+
+                    </p>
+
+                </div>
+
+                <!-- SLIDE 2 -->
+
+                <div class="alarm-slide">
+
+                    <h2 class="alarm-slide-title">
+                        ¿Pueden apagar su alarma?
+                    </h2>
+
+                    <div class="alarm-content-grid">
+
+                        <div>
+
+                            <p class="alarm-text">
+
+                                Las alarmas modernas dependen de internet.
+                                Los atacantes buscan:
+
+                            </p>
+
+                            <p class="alarm-text">
+                                • Desarmado remoto:
+                                Usar fallos de seguridad para apagar sensores.
+                            </p>
+
+                            <p class="alarm-text">
+                                • Interrupción de señal:
+                                Inhabilitar la conexión Wi-Fi de la alarma.
+                            </p>
+
+                            <p class="alarm-text">
+                                • Rastreo de presencia:
+                                Saber exactamente cuándo la casa está vacía.
+                            </p>
+
+                        </div>
+
+                        <div class="alarm-img-wrapper">
+
+                            <img
+                                src="imagenes/alarmas1.png"
+                                alt="Riesgos de alarmas inteligentes"
+                            >
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- SLIDE 3 -->
+
+                <div class="alarm-slide">
+
+                    <h2 class="alarm-slide-title">
+                        Paso 1: Códigos de Invitado
+                    </h2>
+
+                    <p class="alarm-text">
+
+                        Nunca comparta su clave maestra con visitas
+                        o trabajadores. Use la función de Guest Codes.
+
+                    </p>
+
+                    <p class="alarm-text" style="font-weight:bold;">
+                        Códigos Temporales
+                    </p>
+
+                    <p class="alarm-text">
+                        Cree un PIN que solo funcione por un día
+                        para el jardinero o la visita.
+                    </p>
+
+                    <p class="alarm-text" style="font-weight:bold;">
+                        Expiración Automática
+                    </p>
+
+                    <p class="alarm-text">
+                        Configure que el código se borre solo
+                        tras su primer uso.
+                    </p>
+
+                </div>
+
+                <!-- SLIDE 4 -->
+
+                <div class="alarm-slide">
+
+                    <h2 class="alarm-slide-title">
+                        Paso 2: Backup y Alertas
+                    </h2>
+
+                    <div class="alarm-content-grid">
+
+                        <div>
+
+                            <p class="alarm-text">
+
+                                Asegure la comunicación del sistema:
+
+                            </p>
+
+                            <p class="alarm-text">
+                                • Respaldo Celular:
+                                Verifique que su panel tenga
+                                una tarjeta SIM activa.
+                            </p>
+
+                            <p class="alarm-text">
+                                • Si cortan el internet,
+                                la alarma enviará el aviso
+                                por señal móvil.
+                            </p>
+
+                            <p class="alarm-text">
+                                • Configure alertas de pérdida
+                                de conexión Wi-Fi en su celular.
+                            </p>
+
+                        </div>
+
+                        <div class="alarm-img-wrapper">
+
+                            <img
+                                src="imagenes/alarmas2.png"
+                                alt="Alertas y respaldo celular"
+                            >
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- SLIDE 5 -->
+
+                <div class="alarm-slide">
+
+                    <h2 class="alarm-slide-title">
+                        Hogar Protegido
+                    </h2>
+
+                    <p class="alarm-text" style="font-weight:bold;">
+
+                        SEGURIDAD | RESPALDO | CONTROL
+
+                    </p>
+
+                    <p class="alarm-text">
+
+                        Su sistema de alarma ahora tiene
+                        protección adicional contra ataques
+                        digitales y sabotajes remotos.
+
+                    </p>
+
+                </div>
+
+                <!-- CONTROLES -->
+
+                <div class="alarm-controls">
+
+                    <button
+                        class="alarm-btn-slider"
+                        id="alarmPrev"
+                        onclick="moveAlarm(-1)"
+                        disabled
+                    >
+                        Anterior
+                    </button>
+
+                    <button
+                        class="alarm-btn-slider"
+                        id="alarmNext"
+                        onclick="moveAlarm(1)"
+                    >
+                        Siguiente →
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <div class="nav-buttons">
+
+            <a href="guia-monitores.html" class="btn-nav">
+                ← Anterior: Monitores de Bebé
+            </a>
+
+            <a href="guia-sensores.html" class="btn-nav">
+                Siguiente: Sensores Humo/Gas →
+            </a>
+
+        </div>
+
+    </main>
+
+    <script>
+
+        let currentAlarmSlide = 0;
+
+        const alarmSlides =
+            document.querySelectorAll('.alarm-slide');
+
+        const alarmPrev =
+            document.getElementById('alarmPrev');
+
+        const alarmNext =
+            document.getElementById('alarmNext');
+
+        function moveAlarm(step) {
+
+            alarmSlides[currentAlarmSlide]
+                .classList.remove('active');
+
+            currentAlarmSlide += step;
+
+            if (currentAlarmSlide >= alarmSlides.length) {
+
+                window.location.href =
+                    'guia-sensores.html';
+
+                return;
+            }
+
+            if (currentAlarmSlide < 0) {
+                currentAlarmSlide = 0;
+            }
+
+            alarmSlides[currentAlarmSlide]
+                .classList.add('active');
+
+            alarmPrev.disabled =
+                currentAlarmSlide === 0;
+
+            if (
+                currentAlarmSlide ===
+                alarmSlides.length - 1
+            ) {
+
+                alarmNext.innerText =
+                    "Finalizar ✓";
+
+            } else {
+
+                alarmNext.innerText =
+                    "Siguiente →";
+            }
+        }
+
+    </script>
+
+</body>
+</html>
