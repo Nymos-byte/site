@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía de Seguridad: Lavadoras y Secadoras</title>
+    <link rel="icon" href="imagenes/candado.jpg" type="image/jpg">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* TUS VARIABLES Y ESTILOS EXISTENTES (NO TOCAR) */
+        :root {
+            --primary-bg: #f0f4f8;      
+            --header-bg: #0a2540;       
+            --nav-bg: #113355;          
+            --text-main: #1c2d3d;       
+            --text-muted: #4a5c6d;      
+            --accent-color: #007bff;    
+            --accent-hover: #0056b3;    
+            --border-color: #cce0ff;    
+            --card-bg: #ffffff;         
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--primary-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .top-bar {
+            background-color: var(--header-bg);
+            color: #ffffff;
+            padding: 15px 5%;
+            font-size: 28px;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 120px auto 40px auto; 
+            padding: 0 20px;
+            background-color: white;
+            padding-bottom: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .btn-home {
+            display: inline-block;
+            background-color: var(--header-bg);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .guide-header {
+            text-align: center;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .guide-header h1 {
+            color: var(--header-bg);
+            font-size: 36px;
+        }
+
+        .guide-header img {
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        h2.seccion-titulo {
+            color: var(--nav-bg);
+            border-left: 5px solid var(--accent-color);
+            padding-left: 15px;
+            margin-top: 40px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 2px solid var(--border-color);
+        }
+
+        .btn-nav {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .btn-nav:hover {
+            background-color: var(--accent-hover);
+        }
+
+        /* ============================================================
+           ESTILOS AISLADOS DEL SLIDER PRO CON ARREGLOS DE DISEÑO
+        ============================================================ */
+        .pro-slider-container {
+            position: relative;
+            width: 100%;
+            /* AJUSTE CLAVE: Añadir espacio abajo para no pisar la botonera inferior */
+            margin: 50px 0 50px 0; 
+            background-color: #ffffff;
+            font-family: 'DM Sans', sans-serif;
+            overflow: hidden;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .pro-slider-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background-color: #005088;
+            z-index: 10;
+        }
+
+        .pro-slide {
+            display: none; 
+            padding: 60px 70px;
+            min-height: 400px;
+            animation: slideFadePro 0.5s ease-in-out;
+        }
+
+        .pro-slide.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        @keyframes slideFadePro {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .pro-title-layout { text-align: center; }
+        .pro-main-title { font-family: 'Merriweather', serif; font-size: 55px; color: #005088; margin: 0 0 15px 0; font-weight: 700;}
+        .pro-subtitle { font-size: 24px; color: #64748b; margin: 0; }
+
+        .pro-slide-header {
+            font-family: 'Merriweather', serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: #005088;
+            margin: 0 0 30px 0;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 10px;
+            width: 100%;
+        }
+
+        .pro-content { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; width: 100%; }
+        .pro-text p, .pro-text li { font-size: 20px; line-height: 1.6; color: #334155; margin-bottom: 20px; }
+        .pro-text strong { color: #000; }
+
+        .pro-image-wrapper { 
+            width: 100%; 
+            height: 300px; 
+            border-radius: 12px; 
+            overflow: hidden; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        /* AJUSTE CLAVE: Asegurar que las imágenes carguen y se vean bien */
+        .pro-image-wrapper img { width: 100%; height: 100%; object-fit: contain; background: #f8fafc; }
+
+        .pro-tile-grid { display: flex; gap: 20px; width: 100%; }
+        .pro-tile { background: #f0f7ff; padding: 25px; border-radius: 12px; border-left: 6px solid #005088; flex: 1;}
+        .pro-tile h4 { font-family: 'Merriweather', serif; color: #005088; margin: 0 0 10px 0; font-size: 20px;}
+        .pro-tile p { font-size: 16px; margin: 0; color: #334155;}
+
+        .pro-icon-card { text-align: center; background: #fff; padding: 30px; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); flex: 1;}
+        .pro-icon-card i { font-size: 45px; color: #005088; margin-bottom: 20px; }
+        .pro-icon-card p { font-size: 18px; margin: 0; color: #334155;}
+
+        .pro-controls {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 40px;
+            background-color: #f8fafc;
+            border-top: 1px solid #e2e8f0;
+        }
+        .pro-btn {
+            font-family: 'DM Sans', sans-serif;
+            background: #005088;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .pro-btn:hover { background: #003a63; }
+        .pro-btn:disabled { background: #cbd5e1; cursor: not-allowed; opacity: 0.7; }
+        
+        /* Estilo especial para cuando Finalizar está activo */
+        .pro-btn#proBtnNext.finalizar-active {
+            background-color: #10b981; /* Verde éxito */
+        }
+        .pro-btn#proBtnNext.finalizar-active:hover {
+            background-color: #059669;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="top-bar">Ciberseguridad Básica</div>
+    </header>
+
+    <main>
+        <a href="index.html#dispositivos" class="btn-home">← Volver a todos los dispositivos</a>
+
+        <div class="guide-header">
+            <h1>Proteger tu Lavadoras y Secadoras</h1>
+            <img src="imagenes/lavadora.png" alt="Lavadoras y Secadoras" width="200">
+        </div>
+
+        <section>
+            <h2 class="seccion-titulo">¿Por qué es un riesgo?</h2>
+            <p>Te envían un mensaje cuando la ropa está lista. Parecen completamente inofensivas, pero como tienen poca seguridad y computadoras muy sencillas, los atacantes suelen usarlas de 'puerta trasera' para entrar en silencio a las casas.</p>
+        </section>
+
+        <section>
+            <h2 class="seccion-titulo">Manual Interactivo Profesional</h2>
+            
+            <div class="pro-slider-container">
+                
+                <div class="pro-slide active">
+                    <div class="pro-title-layout">
+                        <h1 class="pro-main-title">Lavadoras y Secadoras</h1>
+                        <p class="pro-subtitle">Guía de Seguridad: El Arranque Remoto</p>
+                        <hr style="width: 80px; border: 2px solid #005088; margin: 30px auto;">
+                    </div>
+                </div>
+
+                <div class="pro-slide">
+                    <h2 class="pro-slide-header">¿Cuál es el peligro real?</h2>
+                    <div class="pro-content">
+                        <div class="pro-text">
+                            <p>Las lavadoras modernas permiten que usted las <strong>encienda desde la calle</strong> con su celular.</p>
+                            <p>Sin embargo, si un intruso entra a su red, podría manipular el aparato repetidamente, causando riesgos eléctricos cuando usted no está.</p>
+                        </div>
+                        <div class="pro-image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?q=80&w=800&auto=format&fit=crop" alt="App Lavadora en Celular">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pro-slide">
+                    <h2 class="pro-slide-header">Paso 1: Localice su Aplicación</h2>
+                    <div class="pro-content">
+                        <div class="pro-text">
+                            <p>Usted controla su lavadora desde una aplicación específica.</p>
+                            <p>Abra la aplicación en su celular (ej. <strong>LG ThinQ</strong> o <strong>SmartThings</strong>) y toque el dibujo de su lavadora.</p>
+                        </div>
+                        <div class="pro-tile-grid">
+                            <div class="pro-tile">
+                                <h4>LG ThinQ</h4>
+                                <p>Icono de casita rosa.</p>
+                            </div>
+                            <div class="pro-tile">
+                                <h4>SmartThings</h4>
+                                <p>Para Samsung. Seis puntos azules.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pro-slide">
+                    <h2 class="pro-slide-header">Paso 2: Apagar Inicio Remoto</h2>
+                    <div class="pro-content">
+                        <div class="pro-image-wrapper">
+                            <img src="C:\Users\DELL\Downloads\Pagina CIBERSEGURIDAD BASICA\Pagina CIBERSEGURIDAD BASICA\imagenes\interfaz.png" alt="Ajustes de app lavadora">
+                        </div>
+                        <div class="pro-text">
+                            <p>Busque en la esquina superior el icono de un <strong>Engrane ⚙️</strong> para entrar a la configuración.</p>
+                            <p>Busque el interruptor de <strong>"Arranque Remoto"</strong> y apáguelo (debe quedar en GRIS).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pro-slide">
+                    <h2 class="pro-slide-header">¿Qué ganamos con esto?</h2>
+                    <div style="display: flex; gap: 30px; width: 100%; margin-bottom: 30px;">
+                        <div class="pro-icon-card">
+                            <i class="fa-solid fa-bell"></i>
+                            <p>Seguirá recibiendo avisos cuando la ropa esté lista.</p>
+                        </div>
+                        <div class="pro-icon-card">
+                            <i class="fa-solid fa-shield-halved"></i>
+                            <p>Nadie podrá encender su lavadora desde fuera.</p>
+                        </div>
+                    </div>
+                    <div style="text-align: center;">
+                        <p style="font-style: italic;">"Su tranquilidad es lo más importante."</p>
+                    </div>
+                </div>
+
+                <div class="pro-controls">
+                    <button class="pro-btn" id="proBtnPrev" onclick="cambiarProSlide(-1)" disabled>← Anterior</button>
+                    <button class="pro-btn" id="proBtnNext" onclick="manejarBotonSiguiente()">Empezar Guía →</button>
+                </div>
+            </div>
+
+            <script>
+                let proSlideActual = 0;
+                const proSlides = document.querySelectorAll('.pro-slide');
+                const proBtnPrev = document.getElementById('proBtnPrev');
+                const proBtnNext = document.getElementById('proBtnNext');
+
+                function actualizarControles() {
+                    // Habilitar/deshabilitar botón anterior
+                    proBtnPrev.disabled = proSlideActual === 0;
+
+                    // Lógica del botón siguiente/finalizar
+                    if (proSlideActual === 0) {
+                        proBtnNext.innerText = "Empezar Guía →";
+                        proBtnNext.classList.remove('finalizar-active');
+                    } else if (proSlideActual === proSlides.length - 1) {
+                        // Última slide: habilitar Finalizar
+                        proBtnNext.innerText = "Finalizar ✓";
+                        proBtnNext.classList.add('finalizar-active');
+                        proBtnNext.disabled = false; // Asegurar que esté habilitado
+                    } else {
+                        proBtnNext.innerText = "Siguiente →";
+                        proBtnNext.classList.remove('finalizar-active');
+                    }
+                }
+
+                function cambiarProSlide(n) {
+                    proSlides[proSlideActual].classList.remove('active');
+                    proSlideActual += n;
+                    
+                    // Asegurar que no nos salgamos de los límites (por seguridad)
+                    if (proSlideActual < 0) proSlideActual = 0;
+                    if (proSlideActual >= proSlides.length) proSlideActual = proSlides.length - 1;
+
+                    proSlides[proSlideActual].classList.add('active');
+                    actualizarControles();
+                }
+
+                function manejarBotonSiguiente() {
+                    if (proSlideActual === proSlides.length - 1) {
+                        // Si estamos en la última, redirigir al siguiente dispositivo
+                        window.location.href = 'guia-hornos.html';
+                    } else {
+                        // Si no, avanzar slide normal
+                        cambiarProSlide(1);
+                    }
+                }
+
+                // Inicializar controles al cargar
+                actualizarControles();
+            </script>
+            </section>
+
+        <div class="nav-buttons">
+            <a href="guia-riego.html" class="btn-nav">← Anterior: Sistemas de Riego</a>
+            <a href="guia-hornos.html" class="btn-nav">Siguiente: Hornos y Microondas →</a>
+        </div>
+    </main>
+</body>
+</html>

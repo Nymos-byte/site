@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía de Seguridad: Robots Aspiradores</title>
+    <link rel="icon" href="imagenes/candado.jpg" type="image/jpg">
+    <style>
+        :root {
+            --primary-bg: #f0f4f8;      
+            --header-bg: #0a2540;       
+            --nav-bg: #113355;          
+            --text-main: #1c2d3d;       
+            --text-muted: #4a5c6d;      
+            --accent-color: #007bff;    
+            --accent-hover: #0056b3;    
+            --border-color: #cce0ff;    
+            --card-bg: #ffffff;         
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--primary-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .top-bar {
+            background-color: var(--header-bg);
+            color: #ffffff;
+            padding: 15px 5%;
+            font-size: 28px;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 120px auto 40px auto; 
+            padding: 0 20px;
+            background-color: white;
+            padding-bottom: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .btn-home {
+            display: inline-block;
+            background-color: var(--header-bg);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .guide-header {
+            text-align: center;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .guide-header h1 {
+            color: var(--header-bg);
+            font-size: 36px;
+        }
+
+        .guide-header img {
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        h2 {
+            color: var(--nav-bg);
+            border-left: 5px solid var(--accent-color);
+            padding-left: 15px;
+            margin-top: 40px;
+        }
+
+        .step-box {
+            background-color: #f9fbff;
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 6px;
+        }
+
+        .step-box h3 {
+            margin-top: 0;
+            color: var(--accent-color);
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 2px solid var(--border-color);
+        }
+
+        .btn-nav {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .btn-nav:hover {
+            background-color: var(--accent-hover);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="top-bar">Ciberseguridad Básica</div>
+    </header>
+
+    <main>
+        <a href="index.html#dispositivos" class="btn-home">← Volver a todos los dispositivos</a>
+
+        <div class="guide-header">
+            <h1>Proteger tu Robots Aspiradores</h1>
+            <img src="imagenes/aspiradora.png" alt="Robots Aspiradores" width="200">
+        </div>
+
+        <section>
+            <h2>¿Por qué es un riesgo?</h2>
+            <p>Para limpiar, el robot usa cámaras y sensores láser para crear un mapa exacto de cada habitación, mueble y pasillo de tu casa. Si estos datos caen en manos de extraños, sabrán exactamente cómo es tu hogar por dentro y dónde tienes tus cosas.</p>
+        </section>
+
+        <section>
+            <h2>Manual Paso a Paso para Asegurarlo</h2>
+            
+            <div class="step-box">
+                <h3>Paso 1: Revisa qué datos de mapa se guardan</h3>
+                <p>En la aplicación de limpieza, busca los ajustes de privacidad y asegúrate de que los mapas de tu casa solo se guarden en el robot y no se suban a la nube del fabricante si no es necesario.</p>
+            </div>
+            <div class="step-box">
+                <h3>Paso 2: No le des nombres reales a tus habitaciones</h3>
+                <p>En lugar de poner 'Cuarto de Juan' o 'Caja fuerte', ponle nombres genéricos como 'Zona 1' o 'Zona 2'. Así, si alguien ve el mapa, no sabrá quién duerme en cada lugar.</p>
+            </div>
+            <div class="step-box">
+                <h3>Paso 3: Conéctala a la Red de Invitados</h3>
+                <p>Al igual que los focos, el robot aspirador debe estar aislado en la red de invitados. No necesita estar en la misma red que tu computadora personal para funcionar correctamente.</p>
+            </div>
+        
+        </section>
+
+        <div class="nav-buttons">
+            <a href="guia-impresora.html" class="btn-nav">← Anterior: Impresoras</a>
+            <a href="guia-consolas.html" class="btn-nav">Siguiente: Consolas →</a>
+        </div>
+    </main>
+</body>
+</html>

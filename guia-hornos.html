@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía de Seguridad: Hornos y Microondas Smart</title>
+    <link rel="icon" href="imagenes/candado.jpg" type="image/jpg">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Merriweather:wght@400;700&family=Urbanist:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* TUS VARIABLES Y ESTILOS EXISTENTES (CONSERVADOS INTACTOS) */
+        :root {
+            --primary-bg: #f0f4f8;      
+            --header-bg: #0a2540;       
+            --nav-bg: #113355;          
+            --text-main: #1c2d3d;       
+            --text-muted: #4a5c6d;      
+            --accent-color: #007bff;    
+            --accent-hover: #0056b3;    
+            --border-color: #cce0ff;    
+            --card-bg: #ffffff;         
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--primary-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .top-bar {
+            background-color: var(--header-bg);
+            color: #ffffff;
+            padding: 15px 5%;
+            font-size: 28px;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 120px auto 40px auto; 
+            padding: 0 20px;
+            background-color: white;
+            padding-bottom: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .btn-home {
+            display: inline-block;
+            background-color: var(--header-bg);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .guide-header {
+            text-align: center;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .guide-header h1 {
+            color: var(--header-bg);
+            font-size: 36px;
+        }
+
+        .guide-header img {
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        h2.seccion-titulo {
+            color: var(--nav-bg);
+            border-left: 5px solid var(--accent-color);
+            padding-left: 15px;
+            margin-top: 40px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 2px solid var(--border-color);
+        }
+
+        .btn-nav {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .btn-nav:hover {
+            background-color: var(--accent-hover);
+        }
+
+        /* ============================================================
+           ESTILOS AISLADOS DEL SLIDER OSCURO (DARK CONTRAST)
+        ============================================================ */
+        .slide-deck-container {
+            position: relative;
+            width: 100%;
+            background-color: #000000;
+            color: #f5f5f5;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            margin: 50px 0;
+            font-family: 'Urbanist', sans-serif;
+        }
+
+        .slide-deck-container::after {
+            content: '';
+            position: absolute;
+            bottom: 80px;
+            left: 30px;
+            right: 30px;
+            height: 1px;
+            background: rgba(222, 255, 154, 0.3);
+        }
+
+        .slide-deck-container .slide {
+            display: none;
+            height: 600px;
+            padding: 60px;
+            box-sizing: border-box;
+            animation: fadeInDark 0.5s ease;
+        }
+
+        .slide-deck-container .slide.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        @keyframes fadeInDark {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .slide-deck-container h1, 
+        .slide-deck-container h2, 
+        .slide-deck-container h3, 
+        .slide-deck-container h4 { 
+            margin: 0; 
+            font-weight: 500; 
+            color: #f5f5f5; 
+            border: none;
+            padding: 0;
+        }
+        
+        .slide-deck-container span.accent { color: #deff9a; }
+
+        .slide-deck-container .title-slide h1 { font-size: 60px; text-align: center; line-height: 1.1; }
+        .slide-deck-container .title-slide p { font-size: 20px; text-align: center; color: #daffde; margin-top: 30px; max-width: 700px; align-self: center; }
+
+        .slide-deck-container .slide-header { font-size: 50px; margin-bottom: 40px; }
+
+        .slide-deck-container .content-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+        .slide-deck-container .text-side p { font-size: 20px; color: #daffde; margin-bottom: 20px; line-height: 1.5; }
+        .slide-deck-container .text-side strong { color: #deff9a; }
+        
+        .slide-deck-container .image-side {
+            width: 100%;
+            height: 350px;
+            border-radius: 24px;
+            border: 1px solid #deff9a;
+            overflow: hidden;
+            background: #1a1a1a;
+        }
+        /* MANTENIENDO OBJECT-FIT: CONTAIN PARA QUE NO SE RECORTEN */
+        .slide-deck-container .image-side img { width: 100%; height: 100%; object-fit: contain; }
+
+        .slide-deck-container .steps-container { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .slide-deck-container .step-tile {
+            background-color: #1a1a1a;
+            padding: 25px;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .slide-deck-container .step-tile i { font-size: 30px; color: #deff9a; }
+        .slide-deck-container .step-tile h4 { font-size: 22px; color: #deff9a; }
+        .slide-deck-container .step-tile p { font-size: 16px; color: #fff; line-height: 1.4; }
+
+        .slide-deck-container .nav-controls {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 40px;
+            background: #000;
+            position: relative;
+            z-index: 100;
+            border-top: none;
+        }
+        .slide-deck-container .nav-btn {
+            background: transparent;
+            border: 1px solid #deff9a;
+            color: #deff9a;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Urbanist', sans-serif;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        .slide-deck-container .nav-btn:hover:not(:disabled) { background: #deff9a; color: #000; }
+        .slide-deck-container .nav-btn:disabled { border-color: #333; color: #333; cursor: not-allowed; }
+        .slide-deck-container .nav-btn.finish-btn { background: #deff9a; color: #000; font-weight: 700; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="top-bar">Ciberseguridad Básica</div>
+    </header>
+
+    <main>
+        <a href="index.html#dispositivos" class="btn-home">← Volver a todos los dispositivos</a>
+
+        <div class="guide-header">
+            <h1>Proteger tu Hornos y Microondas Smart</h1>
+            <img src="imagenes/horno.png" alt="Hornos y Microondas Smart" width="200">
+        </div>
+
+        <section>
+            <h2 class="seccion-titulo">¿Por qué es un riesgo?</h2>
+            <p>Permiten precalentarse desde el celular antes de que llegues a casa. Esto es un peligro físico real: un ciberataque malintencionado podría encender el horno vacío a máxima temperatura y causar un incendio en tu cocina.</p>
+        </section>
+
+        <section>
+            <h2 class="seccion-titulo">Manual Interactivo Profesional</h2>
+            
+            <div class="slide-deck-container">
+                
+                <div class="slide title-slide active">
+                    <h1>Hornos y <br><span class="accent">Microondas</span></h1>
+                    <p>Seguridad Física y Prevención de Incendios Digitales</p>
+                </div>
+
+                <div class="slide">
+                    <h2 class="slide-header">¿Por qué es <span class="accent">Crítico</span>?</h2>
+                    <div class="content-grid">
+                        <div class="text-side">
+                            <p>Un horno encendido por un extraño desde internet es un <strong>riesgo de incendio real</strong>.</p>
+                            <p>No permita que la comodidad se convierta en peligro. Aprenda a poner el "Seguro Digital".</p>
+                        </div>
+                        <div class="image-side">
+                            <img src="https://cdn4.volusion.store/tnoys-cjerh/v/vspfiles/photos/0354-2.jpg?v-cache=1769769929" alt="Peligro de incendio">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slide">
+                    <h2 class="slide-header">Identifique el <span class="accent">Modo SAFE</span></h2>
+                    <div class="content-grid">
+                        <div class="image-side">
+                            <img src="https://i.ytimg.com/vi/EwS2BP7PCWw/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCelU8jB_qlazl-ZhNQAmBrx-N3Lg" alt="Modo Safe en Horno">
+                        </div>
+                        <div class="text-side">
+                            <p>Muchas marcas como <strong>AEG o Miele</strong> muestran la palabra "SAFE" o un candado en su pantalla.</p>
+                            <p>Si ve esto, su horno está protegido. Si no lo ve, ¡vamos a activarlo desde su celular!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slide">
+                    <h2 class="slide-header">Activación desde su <span class="accent">Móvil</span></h2>
+                    <div class="steps-container">
+                        <div class="step-tile">
+                            <i class="fa-solid fa-gears"></i>
+                            <h4>Menú de Ajustes</h4>
+                            <p>Abra su aplicación y vaya al menú de "Opciones" o "Ajustes Básicos".</p>
+                        </div>
+                        <div class="step-tile">
+                            <i class="fa-solid fa-lock"></i>
+                            <h4>Bloqueo</h4>
+                            <p>Busque la opción "Child Lock" o "Bloqueo de Seguridad".</p>
+                        </div>
+                        <div class="step-tile">
+                            <i class="fa-solid fa-toggle-on"></i>
+                            <h4>Activar</h4>
+                            <p>Encienda la opción. El horno ahora ignorará órdenes externas sin confirmación.</p>
+                        </div>
+                        <div class="step-tile">
+                            <i class="fa-solid fa-shield-check"></i>
+                            <h4>Listo</h4>
+                            <p>Su cocina ahora es un lugar mucho más seguro contra intrusos.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slide title-slide">
+                    <h1>Cocina <span class="accent">Segura</span></h1>
+                    <p>Protección contra encendidos accidentales y ataques externos.<br>Has completado esta guía.</p>
+                </div>
+
+                <div class="nav-controls">
+                    <button class="nav-btn" id="darkPrevBtn" onclick="moveDarkSlide(-1)" disabled>Anterior</button>
+                    <button class="nav-btn" id="darkNextBtn" onclick="moveDarkSlide(1)">Siguiente</button>
+                </div>
+            </div>
+
+            <script>
+                let currentDarkSlide = 0;
+                const darkSlides = document.querySelectorAll('.slide-deck-container .slide');
+                const darkPrevBtn = document.getElementById('darkPrevBtn');
+                const darkNextBtn = document.getElementById('darkNextBtn');
+
+                function moveDarkSlide(step) {
+                    darkSlides[currentDarkSlide].classList.remove('active');
+                    currentDarkSlide += step;
+
+                    if (currentDarkSlide >= darkSlides.length) {
+                        window.location.href = 'guia-cafeteras.html';
+                        return;
+                    }
+
+                    darkSlides[currentDarkSlide].classList.add('active');
+
+                    darkPrevBtn.disabled = currentDarkSlide === 0;
+                    
+                    if (currentDarkSlide === darkSlides.length - 1) {
+                        darkNextBtn.innerText = "Finalizar ✓";
+                        darkNextBtn.classList.add('finish-btn');
+                    } else {
+                        darkNextBtn.innerText = "Siguiente";
+                        darkNextBtn.classList.remove('finish-btn');
+                    }
+                }
+            </script>
+            </section>
+
+        <div class="nav-buttons">
+            <a href="guia-lavadoras.html" class="btn-nav">← Anterior: Lavadoras</a>
+            <a href="guia-cafeteras.html" class="btn-nav">Siguiente: Cafeteras →</a>
+        </div>
+    </main>
+</body>
+</html>

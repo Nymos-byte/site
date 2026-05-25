@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía de Seguridad: Comederos para Mascotas</title>
+    <link rel="icon" href="imagenes/candado.jpg" type="image/jpg">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* TUS VARIABLES Y ESTILOS EXISTENTES (CONSERVADOS INTACTOS) */
+        :root {
+            --primary-bg: #f0f4f8;      
+            --header-bg: #0a2540;       
+            --nav-bg: #113355;          
+            --text-main: #1c2d3d;       
+            --text-muted: #4a5c6d;      
+            --accent-color: #007bff;    
+            --accent-hover: #0056b3;    
+            --border-color: #cce0ff;    
+            --card-bg: #ffffff;         
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--primary-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .top-bar {
+            background-color: var(--header-bg);
+            color: #ffffff;
+            padding: 15px 5%;
+            font-size: 28px;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 120px auto 40px auto; 
+            padding: 0 20px;
+            background-color: white;
+            padding-bottom: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .btn-home {
+            display: inline-block;
+            background-color: var(--header-bg);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .guide-header {
+            text-align: center;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .guide-header h1 {
+            color: var(--header-bg);
+            font-size: 36px;
+        }
+
+        .guide-header img {
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        h2.seccion-titulo {
+            color: var(--nav-bg);
+            border-left: 5px solid var(--accent-color);
+            padding-left: 15px;
+            margin-top: 40px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 2px solid var(--border-color);
+        }
+
+        .btn-nav {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .btn-nav:hover {
+            background-color: var(--accent-hover);
+        }
+
+        /* ============================================================
+           ESTILOS AISLADOS DEL SLIDER "PASTEL SUAVE" (COMEDEROS)
+        ============================================================ */
+        .pastel-slider-container {
+            position: relative;
+            width: 100%;
+            margin: 50px 0 50px 0;
+            background-color: #ffffff;
+            font-family: 'DM Sans', sans-serif;
+            overflow: hidden;
+            border-left: 12px solid #a855f7;
+            border-radius: 10px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .pastel-slide {
+            display: none; 
+            padding: 60px 70px;
+            min-height: 400px;
+            animation: pastelFade 0.5s ease-in-out;
+        }
+
+        .pastel-slide.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        @keyframes pastelFade {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .pastel-title-layout { text-align: center; }
+        .pastel-main-title { font-family: 'Merriweather', serif; font-size: 50px; color: #6b21a8; margin: 0 0 15px 0; font-weight: 700; }
+        .pastel-subtitle { font-size: 22px; color: #4b5563; margin: 0; }
+
+        .pastel-slide-header {
+            font-family: 'Merriweather', serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: #6b21a8;
+            margin: 0 0 30px 0;
+            border-bottom: 2px dashed #a855f7;
+            padding-bottom: 10px;
+            width: 100%;
+        }
+
+        .pastel-content { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; width: 100%; }
+        .pastel-text p { font-size: 19px; line-height: 1.6; color: #4b5563; margin-bottom: 20px; }
+        .pastel-text strong { color: #6b21a8; }
+
+        .pastel-tile { 
+            background: #faf5ff; 
+            padding: 30px; 
+            border-radius: 20px; 
+            border: 2px dashed #a855f7; 
+        }
+
+        .pastel-image-wrapper { 
+            width: 100%; 
+            height: 300px; 
+            border-radius: 20px; 
+            overflow: hidden; 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            background: #fdf4ff;
+        }
+        
+        /* CORRECCIÓN DE RECORTE: contain asegura que se vea completa */
+        .pastel-image-wrapper img { width: 100%; height: 100%; object-fit: contain; }
+
+        .pastel-icon-card { text-align: center; background: #fff; padding: 30px; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); flex: 1; border: 1px solid #f3f0ff;}
+        .pastel-icon-card i { font-size: 45px; color: #a855f7; margin-bottom: 20px; }
+        .pastel-icon-card p { font-size: 18px; margin: 0; color: #4b5563; }
+
+        .pastel-controls {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 40px;
+            background-color: #f3f0ff;
+            border-top: 1px solid #e9d5ff;
+        }
+
+        .pastel-btn {
+            font-family: 'DM Sans', sans-serif;
+            background: #a855f7;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .pastel-btn:hover { background: #9333ea; }
+        .pastel-btn:disabled { background: #d8b4fe; cursor: not-allowed; opacity: 0.8; }
+        
+        .pastel-btn.finish-btn { background-color: #10b981; }
+        .pastel-btn.finish-btn:hover { background-color: #059669; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="top-bar">Ciberseguridad Básica</div>
+    </header>
+
+    <main>
+        <a href="index.html#dispositivos" class="btn-home">← Volver a todos los dispositivos</a>
+
+        <div class="guide-header">
+            <h1>Proteger tu Comederos para Mascotas</h1>
+            <img src="imagenes/comedero.png" alt="Comederos para Mascotas" width="200">
+        </div>
+
+        <section>
+            <h2 class="seccion-titulo">¿Por qué es un riesgo?</h2>
+            <p>Muchos de estos dispensadores de comida incluyen cámaras y micrófonos integrados para que veas y le hables a tu mascota. Esto significa que son una cámara de vigilancia disfrazada, y los atacantes los adoran por su mala seguridad de fábrica.</p>
+        </section>
+
+        <section>
+            <h2 class="seccion-titulo">Manual Interactivo Profesional</h2>
+            
+            <div class="pastel-slider-container">
+                
+                <div class="pastel-slide active">
+                    <div class="pastel-title-layout">
+                        <h1 class="pastel-main-title">Comederos Automáticos</h1>
+                        <p class="pastel-subtitle">Protege a tus mejores amigos del espionaje digital</p>
+                    </div>
+                </div>
+
+                <div class="pastel-slide">
+                    <h2 class="pastel-slide-header">¿Hay ojos en tu casa?</h2>
+                    <div class="pastel-content">
+                        <div class="pastel-tile">
+                            <div class="pastel-text">
+                                <p>Muchos comederos tienen cámaras para ver a tu perro o gato.</p>
+                                <p>Si un extraño hackea el comedero, podrá <strong>verte a ti y a tu familia</strong> en vivo dentro de casa.</p>
+                            </div>
+                        </div>
+                        <div class="pastel-image-wrapper">
+                            <img src="imagenes\comedero1.webp" alt="Comedero con mascota">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pastel-slide">
+                    <h2 class="pastel-slide-header">Paso 1: Modo Privacidad</h2>
+                    <div class="pastel-content">
+                        <div class="pastel-image-wrapper">
+                            <img src="imagenes\comedero2.webp" alt="Ajustes de cámara en app">
+                        </div>
+                        <div class="pastel-tile" style="background: #fdf4ff;">
+                            <div class="pastel-text">
+                                <p>Busca en los ajustes de video la opción: <strong>"Modo Privacidad"</strong> o <strong>"Suspender Cámara"</strong>.</p>
+                                <p>Actívalo siempre que estés en casa. Solo úsala cuando salgas de viaje.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pastel-slide">
+                    <h2 class="pastel-slide-header">Paso 2: Doble Candado</h2>
+                    <div class="pastel-content" style="grid-template-columns: 1fr;">
+                        <div class="pastel-tile" style="border-left: 15px solid #a855f7;">
+                            <div class="pastel-text">
+                                <h3 style="color: #6b21a8; margin-top: 0;">Active la Verificación por SMS</h3>
+                                <p>Vaya a <strong>Perfil > Seguridad</strong> y encienda la "Verificación en 2 pasos".</p>
+                                <p>Así, si alguien intenta entrar a su comedero desde otro país, su celular le avisará de inmediato con un código secreto que solo usted posee.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pastel-slide">
+                    <h2 class="pastel-slide-header">¡Mascotas felices, casa segura!</h2>
+                    <div style="display: flex; gap: 30px; width: 100%; margin-bottom: 30px;">
+                        <div class="pastel-icon-card">
+                            <i class="fa-solid fa-eye-slash"></i>
+                            <p><strong>Privacidad Protegida:</strong> Nadie puede ver su hogar a través de la lente.</p>
+                        </div>
+                        <div class="pastel-icon-card">
+                            <i class="fa-solid fa-bone"></i>
+                            <p><strong>Rutina Segura:</strong> Las horas de comida de su mascota no pueden ser alteradas.</p>
+                        </div>
+                    </div>
+                    <div style="text-align: center;">
+                        <p style="font-style: italic; color: #4b5563;">"Pequeños pasos que protegen su intimidad familiar."</p>
+                    </div>
+                </div>
+
+                <div class="pastel-controls">
+                    <button class="pastel-btn" id="pastelPrevBtn" onclick="movePastelSlide(-1)" disabled>← Anterior</button>
+                    <button class="pastel-btn" id="pastelNextBtn" onclick="movePastelSlide(1)">Empezar Guía →</button>
+                </div>
+            </div>
+
+            <script>
+                let currentPastelSlide = 0;
+                const pastelSlides = document.querySelectorAll('.pastel-slide');
+                const pastelPrevBtn = document.getElementById('pastelPrevBtn');
+                const pastelNextBtn = document.getElementById('pastelNextBtn');
+
+                function movePastelSlide(step) {
+                    pastelSlides[currentPastelSlide].classList.remove('active');
+                    currentPastelSlide += step;
+
+                    if (currentPastelSlide >= pastelSlides.length) {
+                        // REDIRECCIÓN INTELIGENTE: Vuelve a la lista de dispositivos
+                        window.location.href = 'index.html#dispositivos';
+                        return;
+                    }
+
+                    if (currentPastelSlide < 0) currentPastelSlide = 0;
+
+                    pastelSlides[currentPastelSlide].classList.add('active');
+                    
+                    pastelPrevBtn.disabled = currentPastelSlide === 0;
+
+                    if (currentPastelSlide === 0) {
+                        pastelNextBtn.innerText = "Empezar Guía →";
+                        pastelNextBtn.classList.remove('finish-btn');
+                    } else if (currentPastelSlide === pastelSlides.length - 1) {
+                        pastelNextBtn.innerText = "Finalizar ✓";
+                        pastelNextBtn.classList.add('finish-btn');
+                    } else {
+                        pastelNextBtn.innerText = "Siguiente →";
+                        pastelNextBtn.classList.remove('finish-btn');
+                    }
+                }
+            </script>
+            </section>
+
+        <div class="nav-buttons">
+            <a href="guia-basculas.html" class="btn-nav">← Anterior: Básculas</a>
+            <a href="index.html#dispositivos" class="btn-nav">Regresar a dispositivos</a>
+        </div>
+    </main>
+</body>
+</html>

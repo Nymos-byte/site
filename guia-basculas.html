@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía de Seguridad: Básculas Inteligentes</title>
+    <link rel="icon" href="imagenes/candado.jpg" type="image/jpg">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@400;700&family=Comfortaa:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* TUS VARIABLES Y ESTILOS EXISTENTES (CONSERVADOS INTACTOS) */
+        :root {
+            --primary-bg: #f0f4f8;      
+            --header-bg: #0a2540;       
+            --nav-bg: #113355;          
+            --text-main: #1c2d3d;       
+            --text-muted: #4a5c6d;      
+            --accent-color: #007bff;    
+            --accent-hover: #0056b3;    
+            --border-color: #cce0ff;    
+            --card-bg: #ffffff;         
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--primary-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .top-bar {
+            background-color: var(--header-bg);
+            color: #ffffff;
+            padding: 15px 5%;
+            font-size: 28px;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 120px auto 40px auto; 
+            padding: 0 20px;
+            background-color: white;
+            padding-bottom: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .btn-home {
+            display: inline-block;
+            background-color: var(--header-bg);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .guide-header {
+            text-align: center;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .guide-header h1 {
+            color: var(--header-bg);
+            font-size: 36px;
+        }
+
+        .guide-header img {
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        h2.seccion-titulo {
+            color: var(--nav-bg);
+            border-left: 5px solid var(--accent-color);
+            padding-left: 15px;
+            margin-top: 40px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 2px solid var(--border-color);
+        }
+
+        .btn-nav {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .btn-nav:hover {
+            background-color: var(--accent-hover);
+        }
+
+        /* ============================================================
+           ESTILOS AISLADOS DEL SLIDER ALEGRE/FRESCO (BÁSCULAS)
+        ============================================================ */
+        .bascula-slider-container {
+            position: relative;
+            width: 100%;
+            margin: 50px 0 50px 0;
+            background-color: #dcfd8b; /* Verde limón fresco */
+            font-family: 'Afacad Flux', sans-serif;
+            overflow: hidden;
+            border-radius: 40px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            border: 4px solid #1e293b;
+        }
+
+        .bascula-slide {
+            display: none; 
+            padding: 50px 60px;
+            min-height: 450px;
+            animation: basculaFade 0.4s ease-in-out;
+        }
+
+        .bascula-slide.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        @keyframes basculaFade {
+            from { opacity: 0; transform: scale(0.98); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .bascula-slider-container h1, 
+        .bascula-slider-container h2, 
+        .bascula-slider-container h3 {
+            font-family: 'Comfortaa', cursive;
+            color: #1e293b;
+            margin: 0;
+        }
+
+        .bascula-title-layout { text-align: center; }
+        .bascula-main-title { font-size: 55px; margin-bottom: 15px; line-height: 1.1; }
+        .bascula-subtitle { font-size: 24px; color: #334155; margin: 0; }
+
+        .bascula-slide-header {
+            font-size: 38px;
+            margin-bottom: 30px;
+            border-bottom: 3px dashed #1e293b;
+            padding-bottom: 15px;
+        }
+
+        .bascula-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 30px; align-items: center; width: 100%; }
+        
+        .bascula-box { 
+            background: #fdd5bd; /* Naranja pastel */
+            padding: 30px; 
+            border-radius: 25px; 
+            border: 3px solid #1e293b; 
+        }
+        
+        .bascula-box p { font-size: 20px; line-height: 1.5; color: #000; margin-bottom: 15px; }
+        .bascula-box p:last-child { margin-bottom: 0; }
+        .bascula-box strong { font-weight: 700; }
+
+        .bascula-image-wrapper { 
+            width: 100%; 
+            height: 280px; 
+            border-radius: 30px; 
+            overflow: hidden; 
+            border: 3px solid #1e293b;
+            background: #ffffff;
+        }
+        
+        /* CORRECCIÓN DE RECORTE: contain asegura que la imagen se vea completa */
+        .bascula-image-wrapper img { width: 100%; height: 100%; object-fit: contain; }
+
+        .bascula-controls {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 40px;
+            background-color: rgba(255,255,255,0.3);
+            border-top: 3px solid #1e293b;
+        }
+
+        .bascula-btn {
+            font-family: 'Comfortaa', cursive;
+            background: #1e293b;
+            color: #dcfd8b;
+            border: 2px solid #1e293b;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+
+        .bascula-btn:hover:not(:disabled) { background: #334155; transform: translateY(-2px); }
+        .bascula-btn:disabled { background: #94a3b8; color: #e2e8f0; border-color: #94a3b8; cursor: not-allowed; }
+        
+        .bascula-btn.finish-btn { background-color: #ff823a; color: #fff; border-color: #ff823a; }
+        .bascula-btn.finish-btn:hover { background-color: #e66a22; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="top-bar">Ciberseguridad Básica</div>
+    </header>
+
+    <main>
+        <a href="index.html#dispositivos" class="btn-home">← Volver a todos los dispositivos</a>
+
+        <div class="guide-header">
+            <h1>Proteger tu Básculas Inteligentes</h1>
+            <img src="imagenes/bascula.png" alt="Básculas Inteligentes" width="200">
+        </div>
+
+        <section>
+            <h2 class="seccion-titulo">¿Por qué es un riesgo?</h2>
+            <p>Se conectan para enviar gráficas de tu peso a tu celular. El problema es que estos son datos de salud privados (peso, índice de grasa, músculo). Si tu cuenta no es segura, empresas podrían vender esos datos a aseguradoras o podrían hacerse públicos.</p>
+        </section>
+
+        <section>
+            <h2 class="seccion-titulo">Manual Interactivo Profesional</h2>
+            
+            <div class="bascula-slider-container">
+                
+                <div class="bascula-slide active" style="align-items: center; text-align: center;">
+                    <div class="bascula-title-layout">
+                        <h1 class="bascula-main-title">Básculas <br>Inteligentes</h1>
+                        <p class="bascula-subtitle">Cuida tu peso, protege tus datos</p>
+                    </div>
+                </div>
+
+                <div class="bascula-slide">
+                    <h2 class="bascula-slide-header">Tu salud es PRIVADA</h2>
+                    <div class="bascula-content">
+                        <div class="bascula-box">
+                            <p>Las básculas envían información sobre tu grasa corporal y peso a la "Nube".</p>
+                            <p>Si no configuras la privacidad, estas empresas pueden <strong>vender tus datos</strong> a aseguradoras o bancos.</p>
+                        </div>
+                        <div class="bascula-image-wrapper">
+                            <img src="imagenes\bascula1.webp" alt="Protección de datos en la nube">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bascula-slide">
+                    <h2 class="bascula-slide-header">Cómo cerrar la puerta:</h2>
+                    <div class="bascula-content" style="grid-template-columns: 1fr 1.2fr;">
+                        <div class="bascula-image-wrapper">
+                            <img src="imagenes\bascula2.png" alt="Ajustes de app de báscula" onerror="this.src='https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?q=80&w=800&auto=format&fit=crop'">
+                        </div>
+                        <div class="bascula-box" style="background: #bc84ee; color: white;">
+                            <ol style="font-size: 20px; font-weight: bold; padding-left: 20px; line-height: 1.6; margin: 0; color: #1e293b;">
+                                <li style="margin-bottom: 10px;">Entra a la App de tu báscula.</li>
+                                <li style="margin-bottom: 10px;">Toca tu perfil 👤 y luego <strong>Privacidad</strong>.</li>
+                                <li>Apaga la opción: <strong>"Compartir datos con terceros"</strong>.</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bascula-slide" style="background: #ff823a; text-align: center;">
+                    <h1 style="font-size: 55px; color: white; margin-bottom: 15px;">¡Datos protegidos!</h1>
+                    <p style="font-size: 26px; color: white; font-family: 'Afacad Flux', sans-serif;">Tu salud es solo asunto tuyo.</p>
+                </div>
+
+                <div class="bascula-controls">
+                    <button class="bascula-btn" id="basculaPrevBtn" onclick="moveBasculaSlide(-1)" disabled>← Anterior</button>
+                    <button class="bascula-btn" id="basculaNextBtn" onclick="moveBasculaSlide(1)">Empezar Guía →</button>
+                </div>
+            </div>
+
+            <script>
+                let currentBasculaSlide = 0;
+                const basculaSlides = document.querySelectorAll('.bascula-slide');
+                const basculaPrevBtn = document.getElementById('basculaPrevBtn');
+                const basculaNextBtn = document.getElementById('basculaNextBtn');
+
+                function moveBasculaSlide(step) {
+                    basculaSlides[currentBasculaSlide].classList.remove('active');
+                    currentBasculaSlide += step;
+
+                    if (currentBasculaSlide >= basculaSlides.length) {
+                        // REDIRECCIÓN INTELIGENTE: Pasa a Comederos de Mascotas
+                        window.location.href = 'guia-comederos.html';
+                        return;
+                    }
+
+                    if (currentBasculaSlide < 0) currentBasculaSlide = 0;
+
+                    basculaSlides[currentBasculaSlide].classList.add('active');
+                    
+                    basculaPrevBtn.disabled = currentBasculaSlide === 0;
+
+                    if (currentBasculaSlide === 0) {
+                        basculaNextBtn.innerText = "Empezar Guía →";
+                        basculaNextBtn.classList.remove('finish-btn');
+                    } else if (currentBasculaSlide === basculaSlides.length - 1) {
+                        basculaNextBtn.innerText = "Finalizar ✓";
+                        basculaNextBtn.classList.add('finish-btn');
+                    } else {
+                        basculaNextBtn.innerText = "Siguiente →";
+                        basculaNextBtn.classList.remove('finish-btn');
+                    }
+                }
+            </script>
+            </section>
+
+        <div class="nav-buttons">
+            <a href="guia-cafeteras.html" class="btn-nav">← Anterior: Cafeteras</a>
+            <a href="guia-comederos.html" class="btn-nav">Siguiente: Comederos de Mascotas →</a>
+        </div>
+    </main>
+</body>
+</html>

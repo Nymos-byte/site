@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ciberseguridad Básica - Protege tu Hogar</title>
+    <link rel="icon" href="imagenes/candado.jpg" type="image/jpg">
+    <style>
+
+        /* Paleta de colores  */
+        :root {
+            --primary-bg: #f0f4f8;      
+            --header-bg: #0a2540;       
+            --nav-bg: #113355;          
+            --text-main: #1c2d3d;       
+            --text-muted: #4a5c6d;      
+            --accent-color: #007bff;    
+            --accent-hover: #0056b3;    
+            --border-color: #cce0ff;    
+            --card-bg: #ffffff;         
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--primary-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            transition: filter 0.3s ease;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .top-bar {
+            background-color: var(--header-bg);
+            color: #ffffff;
+            padding: 15px 5%;
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-bar {
+            background-color: var(--nav-bg);
+            padding: 0 5%;
+            display: flex;
+            overflow-x: auto;
+            white-space: nowrap;
+            border-bottom: 3px solid var(--accent-color);
+        }
+
+        .nav-bar::-webkit-scrollbar {
+            display: none;
+        }
+        .nav-bar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .nav-bar a {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 12px 20px;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color 0.2s, background-color 0.2s;
+        }
+
+        .nav-bar a:hover {
+            color: var(--accent-color);
+            background-color: #000000;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 140px auto 40px auto; 
+            padding: 0 20px;
+        }
+
+        section {
+            margin-bottom: 70px;
+            padding-top: 20px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 40px;
+        }
+
+        section:last-child {
+            border-bottom: none;
+        }
+
+        h1 {
+            font-size: 42px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            line-height: 1.1;
+            letter-spacing: -1px;
+            color: var(--header-bg); 
+        }
+
+        h2 {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: var(--nav-bg); 
+            display: inline-block;
+        }
+
+        p {
+            font-size: 19px;
+            margin-bottom: 20px;
+            color: var(--text-main);
+        }
+
+        .intro-text {
+            font-size: 22px;
+            color: var(--text-muted);
+            font-weight: 300;
+            line-height: 1.5;
+        }
+
+        .grid-definiciones {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 25px;
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 123, 255, 0.1); 
+        }
+
+        .card h3 {
+            margin-top: 0;
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--header-bg);
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 16px;
+            margin-bottom: 0;
+        }
+
+        .step-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .step-article {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .step-tag {
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .step-content {
+            background-color: #fff;
+            padding: 0;
+        }
+        
+        .step-content strong {
+            color: var(--header-bg);
+        }
+
+        .action-box {
+            background-color: #e6f2ff;
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin-top: 15px;
+            border-radius: 0 4px 4px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+
+        .action-box p {
+            font-size: 17px;
+            margin: 0;
+            color: var(--header-bg);
+        }
+
+         footer {
+            background-color: var(--header-bg);
+            color: #cce0ff;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 40px;
+            border-top: 4px solid var(--accent-color);
+        }
+
+        footer p {
+            font-size: 14px;
+            color: #8bb0d9;
+            margin: 0;
+        }
+
+        /* ESTILOS DE LA SIMULACIÓN */
+        
+        .blur-background > header, 
+        .blur-background > main, 
+        .blur-background > footer {
+            filter: blur(8px);
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 450px;
+            position: relative;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            text-align: center;
+            animation: slideDown 0.4s ease forwards;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px; right: 15px;
+            font-size: 28px;
+            cursor: pointer;
+            color: #888;
+            font-weight: bold;
+        }
+        
+        .close-btn:hover { color: #333; }
+
+        .modal-content h3 {
+            color: var(--header-bg);
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        #fake-form input {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 15px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: background 0.2s;
+        }
+        
+        .submit-btn:hover { background-color: var(--accent-hover); }
+
+        .feedback-box {
+            padding: 25px 20px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .feedback-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .feedback-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 32px; }
+            h2 { font-size: 26px; }
+            p { font-size: 17px; }
+            main { margin-top: 120px; }
+            .top-bar { font-size: 22px; padding: 15px 20px; }
+            .nav-bar { padding: 0 20px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="top-bar">
+            Ciberseguridad Básica
+        </div>
+        <div class="nav-bar">
+            <a href="#introduccion">Inicio</a>
+            <a href="#definiciones">Definiciones</a>
+            <a href="#inventario">Inventario del hogar</a>
+            <a href="#puerta">Fortalecer la puerta</a>
+            <a href="#invitados">Zona de invitados</a>
+            <a href="#contrasenas">Gestión de contraseñas</a>
+            <a href="#mantenimiento">Mantenimiento</a>
+            <a href="#dispositivos">Dispositivos</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Introducción -->
+          <section id="introduccion">
+            <h1>Tu Hogar es un Ecosistema Digital: Protégelo</h1>
+            <p class="intro-text">¿Sabías que hoy en día una bombilla inteligente tiene más potencia de cálculo que la computadora que llevó al hombre a la Luna? Tu hogar ya no es solo paredes y muebles, 
+            es una red invisible conectada al mundo entero.</p>
+            <p>Esta página nace porque la seguridad en el hogar inteligente no es un problema técnico, sino <strong>educativo</strong>. El eslabón más débil no es el aparato, sino el usuario que desconoce los riesgos 
+            básicos de dejar una configuración de fábrica o usar una contraseña débil.</p>
+            <p><strong>¿Por qué debería importarte?</strong> Porque tus datos son la "llave" de tu vida financiera, personal y social. Una cámara mal configurada o un router sin contraseña son como dejar la puerta de tu casa abierta
+            de par en par con un letrero que dice "Bienvenidos".</p>
+            <h1>La Importancia de la Ciberhigiene</h1>
+            <p>Así como nos lavamos las manos para evitar enfermedades sin necesidad de ser médicos, todos debemos aprender a "lavar" nuestra red doméstica sin necesidad de ser ingenieros. </p>
+            <br/><h1>¿Qué es la Ciberseguridad?</h1>
+            <p>La ciberseguridad es el esfuerzo continuo para proteger a las personas, las organizaciones y los gobiernos de los ataques digitales 
+            mediante la protección de los sistemas y datos en red contra el uso o daño no autorizados.</p><br />
+            <h1>Datos personales</h1>
+            <p>Los datos personales son cualquier información que se puede utilizar para identificarlo y puede existir tanto fuera de línea 
+            como en línea.</p>
+            <p><strong>Identidad fuera de linea:</strong> Su identidad fuera de línea es la persona de la vida real que presenta a diario en los lugares a los que asiste,
+            por lo cual, los demás conocen detalles sobre su vida personal</p>
+            <p><strong>Identidad en linea:</strong> Su identidad en línea es quién eres y como te presentas a los demás en línea, incluye el nombre o alías que utiliza para sus cuentas
+            en línea, así como su identidad en redes sociales. Debe tener cuidado de limitar la cantidad de información que revela</p>
+            <br/><h1>¿Es peligrosa una filtración de datos?</h1>
+            <p>Sí, es peligrosa y sucede a menudo, incluso en grandes empresas o instituciones, por ejemplo, en <a href = "https://x.com/VECERTRadar/status/2044130161004605905">abril de 2026</a>, 
+            se dió a conocer la noticia sobre una filtración de aproximadamente 2,606 datos de alumnos del Instituto Tecnológico de Zacatepec (TecNM), filtración de la cuál, hasta la fecha, se desconoce la razón (al menos para el público).
+            <br/>Una filtración de datos personales como: nombre, edad, número de teléfono y dirección, es un tema delicados ya que las personas maliciosas pueden utilizar 
+            dichos datos para extorsionarlos o llegar a escenarios más delicados. 
+            <br/><br/>Desafortunadamente en este caso no pudieron proteger los datos de los estudiantes, sin embargo, esta página web está diseñada para que todo el público en general tome conciencia 
+            sobre la importancia de la ciberseguridad y aprendan a proteger sus datos en línea sin importar si no cuentan con conocimientos tecnológicos. 
+            </p><br />
+            
+        </section>
+
+        <!-- Definiciones  -->
+        <section id="definiciones">
+            <h2>Definiciones Básicas</h2>
+            <p>Antes de comenzar con los pasos, aclaremos algunas palabras clave que encontrarás usando analogías cotidianas:</p>
+            
+            <div class="grid-definiciones">
+                <div class="card">
+                    <h3>IoT (Internet de las Cosas)</h3>
+                    <p>Son todos los objetos cotidianos de tu casa (focos, cerraduras, refrigeradores, cámaras) 
+                    <strong>que se conectan a internet</strong> para obedecer órdenes a distancia.</p>
+                    <center> 
+                    </p><img src="imagenes/IoT.jpg" alt="Ciber Higiene" width="250" style="display:block; margin:20px auto; border-radius:8px;">
+                    </center>
+                </div>
+                <div class="card">
+                    <h3>Ciberhigiene</h3>
+                    <p>Es como <strong>"lavarse las manos digitalmente"</strong>. Consiste en tener buenos hábitos diarios como cambiar claves 
+                    y actualizar aplicaciones frecuentemente para prevenir "enfermedades" digitales.</p>
+                    <center> 
+                    </p><img src="imagenes/ciberhigiene.jpg" alt="Ciber Higiene" width="250" style="display:block; margin:20px auto; border-radius:8px;">
+                    </center>
+                </div>
+                <div class="card">
+                    <h3>Router</h3>
+                    <p>Es el director del "tráfico" o la <strong>"puerta de entrada principal"</strong> del internet a tu casa. 
+                    Todo lo que entra y sale pasa por este aparato.</p>
+                    <center> 
+                    </p></p><img src="imagenes/router.jpg" alt="Ciber Higiene" width="250" style="display:block; margin:20px auto; border-radius:8px;">
+                    </center>
+                </div>
+                <div class="card">
+                    <h3>VPN (Túnel privado)</h3>
+                    <p>Imagina que cuando sales a internet, vas en un coche transparente y todos ven qué llevas. 
+                    Una VPN es como un coche con vidrios polarizados que viaja por un túnel privado: 
+                    <strong>nadie puede ver qué estás haciendo ni qué información envías.</strong></p>
+                    <center> 
+                    </p><img src="imagenes/vpn.jpg" alt="Ciber Higiene" width="150" style="display:block; margin:10px auto; border-radius:8px;">
+                    </center>
+                </div>
+                <div class="card">
+                    <h3>Cifrado (Encriptación)</h3>
+                    <p>Es como escribir un <strong>mensaje en un código secreto</strong> que solo tú y la persona que lo recibe pueden leer. 
+                    Si alguien intercepta el mensaje en el camino, solo verá garabatos sin sentido.</p>
+                    <center> 
+                    </p><img src="imagenes/cifrado.jpg" alt="Ciber Higiene" width="250" style="display:block; margin:20px auto; border-radius:8px;">
+                    </center>
+                </div>
+                <div class="card">
+                    <h3>Contraseña</h3>
+                    <p><strong>Es la llave de tu puerta.</strong> Si es corta o fácil (como "123456"), es como dejar la llave puesta en la cerradura. 
+                    Una buena contraseña es larga y mezcla letras, números y símbolos.</p>
+                    <center> 
+                    </p><img src="imagenes/contraseña.jpg" alt="Ciber Higiene" width="250" style="display:block; margin:20px auto; border-radius:8px;">
+                    </center>
+                </div>
+                <div class="card">
+                    <h3>Doble Factor (2FA)</h3>
+                    <p>Imagina que para entrar a tu casa necesitas una llave normal y, además, un código numérico que llega a tu celular. 
+                    Es pedir <strong>dos pruebas de identidad</strong> antes de dejarte entrar a una cuenta.</p>
+                    <center> 
+                    </p><img src="imagenes/2FA.jpg" alt="Ciber Higiene" width="250" style="display:block; margin:20px auto; border-radius:8px;">
+                    </center>
+                </div>
+                <div class="card">
+                    <h3>Gestor de contraseñas</h3>
+                    <p>Es como una <strong>caja fuerte donde guardas todas tus llaves.</strong> Solo tienes que recordar la clave de la caja fuerte, 
+                    y ella se encarga de poner las llaves difíciles en cada cuenta por ti.</p>
+                    <center> 
+                    </p><img src="imagenes/gestorcontras.jpg" alt="Ciber Higiene" width="250" style="display:block; margin:20px auto; border-radius:8px;">
+                    </center>
+                </div>
+                <div class="card">
+                    <h3>Phishing (Pesca de datos)</h3>
+                    <p>Son <strong>engaños psicológicos por mensajes, correos electrónicos, llamadas</strong>. 
+                    El atacante se disfraza de una empresa de confianza para intentar que le entregues tus "llaves" digitales voluntariamente.</p>
+                    <center> 
+                    </p><img src="imagenes/phishing.png" alt="Ciber Higiene" width="250" style="display:block; margin:20px auto; border-radius:8px;">
+                    </center>
+                </div>
+                <div class="card">
+                    <h3>Malware (Programa malvado)</h3>
+                    <p>Es cualquier tipo de "virus" que entra a tu computadora o celular para espiarte, borrar tus fotos o alentarlo. 
+                    Es como un <strong>parásito que se cuela cuando abres una puerta que no deberías.</strong></p>
+                    <center> 
+                    </p><img src="imagenes/malware.jpg" alt="Ciber Higiene" width="250" style="display:block; margin:20px auto; border-radius:8px;">
+                    </center>
+                </div>
+                <div class="card">
+                    <h3>Ransomware (Secuestro de datos)</h3>
+                    <p>Es cuando un <strong>ladrón entra a tu casa, mete todos tus álbumes de fotos en una caja fuerte</strong> y te pide dinero para darte la combinación. 
+                    Si no pagas, no recuperas tus archivos.</p>
+                    <center> 
+                    </p><img src="imagenes/ramsonware.jpg" alt="Ciber Higiene" width="250" style="display:block; margin:20px auto; border-radius:8px;">
+                    </center>
+                </div>
+                <div class="card">
+                    <h3>Antivirus</h3>
+                    <p>Es como tener un <strong>guardia de seguridad en la puerta que revisa a todos los que quieren entrar</strong> y saca a los que se ven sospechosos.</p>
+                    <center> 
+                    </p><img src="imagenes/antivirus.jpg" alt="Ciber Higiene" width="250" style="display:block; margin:20px auto; border-radius:8px;">
+                    </center>
+                </div>
+                <div class="card">
+                    <h3>Actualizaciones de software</h3>
+                    <p>Los creadores de tus aplicaciones encuentran "agujeros" por donde pueden entrar ladrones. <strong>La actualización es el "parche" 
+                    que tapa ese agujero.</strong> Si no actualizas, el agujero sigue abierto.</p>
+                    <center> 
+                    </p><img src="imagenes/actualizacion.jpg" alt="Ciber Higiene" width="250" style="display:block; margin:20px auto; border-radius:8px;">
+                    </center>
+                </div>
+                <div class="card">
+                    <h3>Firewall (Muro de fuego)</h3>
+                    <p>Es una <strong>reja que filtra quién puede entrar y salir de tu conexión a internet.</strong> Decide qué información es segura y cuál debe 
+                    quedarse fuera.</p>
+                    <center> 
+                    </p><img src="imagenes/firewall.jpg" alt="Ciber Higiene" width="250" style="display:block; margin:20px auto; border-radius:8px;" >
+                    </center>
+                </div>
+                <div class="card">
+                    <h3>Hackers</h3>
+                    <p>Este grupo de <strong>atacantes irrumpe en sistemas informáticos o redes para obtener acceso.</strong> Dependiendo de la intención de su intrusión,
+                    pueden clasificarse como hackers de sombrero blanco, gris o negro.</p>
+                    <center> 
+                    </p><img src="imagenes/hackers.png" alt="Hackers" width="250" style="display:block; margin:20px auto; border-radius:8px;" >
+                    </center>
+                </div>
+            </div>
+        </section>
+
+        <!-- Etapas -->
+                <!-- Etapa 1: Inventario -->
+        <section id="inventario">
+            <div class="step-article">
+                <span class="step-tag">Etapa 1</span>
+                <h2>El Inventario de tu Hogar Conectado</h2>
+                <div class="step-content">
+                    <p>No puedes proteger lo que no sabes que tienes. Muchos de nosotros compramos aparatos y olvidamos que están conectados para siempre. A esto se le llama <strong>"Superficie de Ataque"</strong>: cada aparato es una ventana potencial para un intruso.</p>
+                    
+                    <p><strong>¿Por qué es peligroso olvidar dispositivos?</strong> Los dispositivos viejos o que no usamos suelen dejar de recibir actualizaciones de seguridad, convirtiéndose en "puertas oxidadas" fáciles de forzar.</p>
+                    
+                    <img src="imagenes/inventario.png" alt="Inventario" width="400" style="display:block; margin:20px auto; border-radius:8px;">
+
+                    <div class="action-box">
+                        <p><strong>Acción Detallada:</strong> Camina por tu casa y anota cada cosa que use Wi-Fi. No olvides el aire acondicionado, la impresora o el reloj inteligente. Si tienes una app de tu proveedor de internet, entra y mira la lista de dispositivos conectados; te sorprenderá ver cuántos hay.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Etapa 2: Router -->
+        <section id="puerta">
+            <div class="step-article">
+                <span class="step-tag">Etapa 2</span>
+                <h2>Fortalecer la Puerta Principal (Tu Router)</h2>
+                <div class="step-content">
+                    <p>El router es el aparato más importante. Si alguien entra al router, tiene el control de toda tu casa. El mayor error es dejar el nombre de la red como viene de fábrica (ej. "Infinitum_A1B2") porque le dice al atacante exactamente qué modelo de router tienes.</p>
+                    
+                    <p><strong>Cambia el nombre (SSID):</strong> Ponle algo genérico que no revele quién eres ni dónde vives. No uses "Casa de los + tu apellido" o "Red de + tu nombre".</p>
+                    
+                    <p><strong>Desactiva el WPS:</strong> Es ese botoncito que permite conectar cosas sin clave. Es muy cómodo, pero es una falla de seguridad conocida que los atacantes usan para entrar en segundos.</p>
+
+                    <img src="imagenes/fortalecerR.png" alt="Configurar Router" width="400" style="display:block; margin:20px auto; border-radius:8px;">
+
+                    <div class="action-box">
+                        <p><strong>Acción Detallada:</strong> Entra a la configuración de tu router (suele ser una dirección como 192.168.1.1). Cambia la contraseña de acceso al panel (la que dice 'admin') y activa el cifrado <strong>WPA2 o WPA3</strong>. Es el escudo más fuerte disponible hoy.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Etapa 3: Red de Invitados -->
+        <section id="invitados">
+            <div class="step-article">
+                <span class="step-tag">Etapa 3</span>
+                <h2>Crear una "Zona de Invitados"</h2>
+                <div class="step-content">
+                    <p>Imagina que tienes una casa de invitados separada de tu mansión principal. Si un invitado quema accidentalmente la casa de huéspedes, tu mansión está a salvo. Esto es lo que hace una <strong>Red de Invitados</strong>.</p>
+                    
+                    <p>Muchos focos inteligentes o cámaras baratas tienen poca seguridad. Si los pones en la misma red que tu computadora donde haces banca en línea, un atacante que entre por el foco puede "saltar" a tu computadora.</p>
+
+                    <img src="imagenes/invitados.png" alt="Red de Invitados" width="400" style="display:block; margin:20px auto; border-radius:8px;">
+
+                    <div class="action-box">
+                        <p><strong>Acción Detallada:</strong> En la configuración de tu router, busca "Red de invitados" o "Guest Network". Actívala con una contraseña distinta y conecta ahí todos los dispositivos "tontos" como focos, enchufes y electrodomésticos.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Etapa 4: Contraseñas -->
+        <section id="contrasenas">
+            <div class="step-article">
+                <span class="step-tag">Etapa 4</span>
+                <h2>Gestión de Contraseñas y Accesos</h2>
+                <div class="step-content">
+                    <p>Usar la misma contraseña en todo es como tener una sola llave para tu casa, tu coche y tu caja fuerte. Si pierdes una, pierdes todo. Una buena contraseña no tiene que ser difícil de recordar, solo <strong>larga</strong>.</p>
+                    
+                    <p><strong>Usa Frases de Contraseña:</strong> En lugar de "P@ssw0rd123", usa algo como "210819ElGatoAzulSaltaAlto2024". Es mucho más difícil de adivinar para una computadora pero fácil para ti.</p>
+
+                    <img src="imagenes/contrasena.png" alt="Seguridad Contraseñas" width="400" style="display:block; margin:20px auto; border-radius:8px;">
+
+                    <div class="action-box">
+                        <p><strong>Acción Detallada:</strong> Activa la <strong>Autenticación de Dos Factores (2FA)</strong> en todo (WhatsApp, Facebook, Correo). Es la mejor defensa: aunque te roben la contraseña, no podrán entrar sin el código de tu celular.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Etapa 5: Mantenimiento -->
+        <section id="mantenimiento">
+            <div class="step-article">
+                <span class="step-tag">Etapa 5</span>
+                <h2>Mantenimiento y Vigilancia Proactiva</h2>
+                <div class="step-content">
+                    <p>La seguridad no es algo que se hace una vez y ya. Es como limpiar la casa. Los fabricantes de software encuentran "agujeros" constantemente y lanzan parches (actualizaciones). Si no actualizas, dejas el agujero abierto.</p>
+                    
+                    <p><strong>Apaga lo que no uses:</strong> Si tienes una cámara de seguridad adentro de tu casa, ¿necesitas que esté prendida mientras estás ahí? Si tu asistente de voz tiene un botón de silencio, úsalo cuando no lo necesites.</p>
+
+                    <img src="imagenes/mantenimiento.png" alt="Actualización" width="400" style="display:block; margin:20px auto; border-radius:8px;">
+
+                    <div class="action-box">
+                        <p><strong>Acción Detallada:</strong> Una vez al mes, revisa que tu celular y computadora no tengan actualizaciones pendientes. Entra a la app de tus cámaras y focos y busca la opción "Actualizar Firmware". Es ponerle un candado nuevo a tu puerta.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dispositivos Conectados -->
+        <section id="dispositivos">
+            <h2>Dispositivos en tu Hogar Inteligente</h2>
+            <p>Cada uno de estos aparatos es una puerta a tu red. Haz clic para aprender cómo protegerlos específicamente:</p>
+            <div class="grid-definiciones">
+                <!-- Tarjetas de Dispositivos -->
+                <div class="card">
+                    <h3>Router (El Corazón)</h3>
+                    <p>Controla todo el flujo de datos.</p>
+                    <img src="imagenes/router.jpg" alt="Router" width="150" style="display:block; margin:20px auto; border-radius:8px;">
+                    <a href="guia-router.html">Configurar seguridad →</a>
+                </div>
+                <div class="card">
+                    <h3>Smartphone</h3>
+                    <p>Tu vida entera en un bolsillo.</p>
+                    <img src="imagenes/smartphone.png" alt="Smartphone" width="150" style="display:block; margin:20px auto; border-radius:8px;">
+                    <a href="guia-celular.html">Bloquear accesos →</a>
+                </div>
+                <div class="card">
+                    <h3>Smart TV</h3>
+                    <p>Pueden rastrear lo que ves.</p>
+                    <img src="imagenes/smarttv.png" alt="Smart TV" width="150" style="display:block; margin:20px auto; border-radius:8px;">
+                    <a href="guia-tv.html">Privacidad de TV →</a>
+                </div>
+                <div class="card">
+                    <h3>Asistentes (Alexa/Google)</h3>
+                    <p>Siempre están escuchando.</p>
+                    <img src="imagenes/alexa.png" alt="Asistente" width="150" style="display:block; margin:20px auto; border-radius:8px;">
+                    <a href="guia-asistente.html">Borrar grabaciones →</a>
+                </div>
+                <div class="card">
+                    <h3>Cámaras de Seguridad</h3>
+                    <p>Ojos dentro de tu intimidad.</p>
+                    <img src="imagenes/camara.png" alt="Cámara" width="150" style="display:block; margin:20px auto; border-radius:8px;">
+                    <a href="guia-camara.html">Evitar espionaje →</a>
+                </div>
+                <div class="card">
+                    <h3>Focos Inteligentes</h3>
+                    <p>Puertas de entrada para hackers.</p>
+                    <img src="imagenes/foco.png" alt="Foco" width="150" style="display:block; margin:20px auto; border-radius:8px;">
+                    <a href="guia-foco.html">Aislar luces →</a>
+                </div>
+                <div class="card">
+                    <h3>Relojes Inteligentes</h3>
+                    <p>Datos de salud y ubicación.</p>
+                    <img src="imagenes/reloj.png" alt="Smartwatch" width="150" style="display:block; margin:20px auto; border-radius:8px;">
+                    <a href="guia-reloj.html">Proteger GPS →</a>
+                </div>
+                <div class="card">
+                    <h3>Cerraduras Inteligentes</h3>
+                    <p>La seguridad física real.</p>
+                    <img src="imagenes/cerradura.png" alt="Lock" width="150" style="display:block; margin:20px auto; border-radius:8px;">
+                    <a href="guia-cerradura.html">Cifrar acceso →</a>
+                </div>
+                <div class="card">
+                    <h3>Impresoras Wi-Fi</h3>
+                    <p>A menudo olvidadas y vulnerables.</p>
+                    <img src="imagenes/impresora.png" alt="Printer" width="150" style="display:block; margin:20px auto; border-radius:8px;">
+                    <a href="guia-impresora.html">Cerrar puertos →</a>
+                </div>
+                <div class="card">
+                    <h3>Robot Aspirador</h3>
+                    <p>Mapean el interior de tu casa.</p>
+                    <img src="imagenes/aspiradora.png" alt="Aspiradora" width="150" style="display:block; margin:20px auto; border-radius:8px;">
+                    <a href="guia-aspiradora.html">Datos de mapa →</a>
+                </div>
+                <div class="card">
+                    <h3>Consolas de Juego</h3>
+                    <p>Cuentas con tarjetas de crédito.</p>
+                    <img src="imagenes/consolas.png" alt="Consolas" width="150" style="display:block; margin:20px auto; border-radius:8px;">
+                    <a href="guia-consolas.html">Seguridad de pago →</a>
+                </div>
+                <div class="card">
+                    <h3>Refrigeradores Smart</h3>
+                    <p>Envían datos de consumo.</p>
+                    <img src="imagenes/refrigerador.png" alt="Refrigerador" width="150" style="display:block; margin:20px auto; border-radius:8px;">
+                    <a href="guia-refrigerador.html">Revisar permisos →</a>
+                </div>
+                <div class="card">
+                    <h3>Timbres con Video</h3>
+                    <p>Graban a todos los que se acercan a tu puerta.</p>
+                    <img src="imagenes/timbres.png" alt="Timbres con Video" width="150" style="display:block; margin:20px auto; border-radius:8px;">
+                    <a href="guia-timbres.html">Proteger timbre →</a>
+                </div>
+                <div class="card">
+                    <h3>Monitores de Bebé Wi-Fi</h3>
+                    <p>Ojos y oídos en el cuarto de tus hijos.</p>
+                    <img src="imagenes/monitores.png" alt="Monitores de Bebé" width="150" style="display:block; margin:20px auto; border-radius:8px;">
+                    <a href="guia-monitores.html">Asegurar monitor →</a>
+                </div>
+                <div class="card">
+                    <h3>Sistemas de Alarma Smart</h3>
+                    <p>Tu seguridad física conectada a la red.</p>
+                    <img src="imagenes/alarmas.png" alt="Sistemas de Alarma" width="150" style="display:block; margin:20px auto; border-radius:8px;">
+                    <a href="guia-sistemas.html">Proteger alarma →</a>
+                </div>
+                <div class="card">
+                    <h3>Sensores de Humo y Gas</h3>
+                    <p>Te avisan al celular, pero podrían ser desactivados.</p>
+                    <img src="imagenes/sensores.png" alt="Sensores" width="150" style="display:block; margin:20px auto; border-radius:8px;">
+                    <a href="guia-sensores.html">Revisar sensores →</a>
+                </div>
+                <div class="card">
+                    <h3>Laptops</h3>
+                    <p>El centro portátil de tu trabajo y vida digital.</p>
+                    <img src="imagenes/laptops.png" alt="Laptops" width="150" style="display:block; margin:20px auto; border-radius:8px;">
+                    <a href="guia-laptops.html">Asegurar laptop →</a>
+                </div>
+                <div class="card">
+                    <h3>Computadoras</h3>
+                    <p>El equipo de escritorio con todos tus archivos.</p>
+                    <img src="imagenes/computadoras.png" alt="Computadoras" width="150" style="display:block; margin:20px auto; border-radius:8px;">
+                    <a href="guia-computadoras.html">Asegurar PC →</a>
+                </div>
+                <div class="card">
+                    <h3>Tablets y iPads</h3>
+                    <p>Acceso directo a tus fotos y redes sociales.</p>
+                    <img src="imagenes/tablet.png" alt="Tablets" width="150" style="display:block; margin:20px auto; border-radius:8px;">
+                    <a href="guia-tablets.html">Privacidad tablet →</a>
+                </div>
+                <div class="card">
+                    <h3>Bocinas Inalámbricas</h3>
+                    <p>Reproducen música pero están en tu red.</p>
+                    <img src="imagenes/bocina.png" alt="Bocinas" width="150" style="display:block; margin:20px auto; border-radius:8px;">
+                    <a href="guia-bocinas.html">Proteger bocina →</a>
+                </div>
+                <div class="card">
+                    <h3>Termostatos Inteligentes</h3>
+                    <p>Saben a qué hora estás en casa o sales.</p>
+                    <img src="imagenes/termostato.png" alt="Termostatos" width="150" style="display:block; margin:20px auto; border-radius:8px;">
+                    <a href="guia-termostatos.html">Ocultar rutinas →</a>
+                </div>
+                <div class="card">
+                    <h3>Enchufes Inteligentes</h3>
+                    <p>Controlan la energía de cualquier aparato.</p>
+                    <img src="imagenes/enchufe.png" alt="Enchufes" width="150" style="display:block; margin:20px auto; border-radius:8px;">
+                    <a href="guia-enchufes.html">Configurar enchufe →</a>
+                </div>
+                <div class="card">
+                    <h3>Persianas y Cortinas Smart</h3>
+                    <p>Revelan a qué hora te despiertas o duermes.</p>
+                    <img src="imagenes/persianas.png" alt="Persianas" width="150" style="display:block; margin:20px auto; border-radius:8px;">
+                    <a href="guia-persianas.html">Proteger horarios →</a>
+                </div>
+                <div class="card">
+                    <h3>Sistemas de Riego</h3>
+                    <p>Tienen tu ubicación exacta para el clima.</p>
+                    <img src="imagenes/riego.png" alt="Riego" width="150" style="display:block; margin:20px auto; border-radius:8px;">
+                    <a href="guia-riego.html">Ocultar ubicación →</a>
+                </div>
+                <div class="card">
+                    <h3>Lavadoras y Secadoras</h3>
+                    <p>Expuestas a la red solo para avisarte.</p>
+                    <img src="imagenes/lavadora.png" alt="Lavadoras" width="150" style="display:block; margin:20px auto; border-radius:8px;">
+                    <a href="guia-lavadoras.html">Aislar lavadora →</a>
+                </div>
+                <div class="card">
+                    <h3>Hornos y Microondas</h3>
+                    <p>Pueden encenderse a distancia.</p>
+                    <img src="imagenes/horno.png" alt="Hornos" width="150" style="display:block; margin:20px auto; border-radius:8px;">
+                    <a href="guia-hornos.html">Bloquear encendido →</a>
+                </div>
+                <div class="card">
+                    <h3>Cafeteras Inteligentes</h3>
+                    <p>Un puente inusual que usan los atacantes.</p>
+                    <img src="imagenes/cafetera.png" alt="Cafeteras" width="150" style="display:block; margin:20px auto; border-radius:8px;">
+                    <a href="guia-cafeteras.html">Proteger cafetera →</a>
+                </div>
+                <div class="card">
+                    <h3>Básculas Inteligentes</h3>
+                    <p>Guardan tu peso y datos de salud.</p>
+                    <img src="imagenes/bascula.png" alt="Básculas" width="150" style="display:block; margin:20px auto; border-radius:8px;">
+                    <a href="guia-basculas.html">Proteger salud →</a>
+                </div>
+                <div class="card">
+                    <h3>Comederos para Mascotas</h3>
+                    <p>Controlan los horarios de tus animales.</p>
+                    <img src="imagenes/comedero.png" alt="Comederos" width="150" style="display:block; margin:20px auto; border-radius:8px;">
+                    <a href="guia-comederos.html">Proteger comedero →</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Proyecto de Análisis de la seguridad en el internet de las cosas (IoT).</p>
+        <p>TecNM | Instituto Tecnológico de Zacatepec | 2026</p>
+    </footer>
+
+    <!-- MODAL PHISHING -->
+    <div id="phishing-modal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-btn" id="close-modal" title="Cerrar ventana">&times;</span>
+            <div id="form-container">
+                <h3>Bienvenido, por favor crea una cuenta para seguir leyendo</h3>
+                <form id="fake-form">
+                    <input type="text" placeholder="Nombre de usuario" required>
+                    <input type="text" placeholder="Nombre completo" required>
+                    <input type="number" placeholder="Edad" required>
+                    <input type="email" placeholder="Correo electrónico" required>
+                    <input type="tel" placeholder="Teléfono" required>
+                    <input type="text" placeholder="Estado" required>
+                    <button type="submit" class="submit-btn">Crear cuenta</button>
+                </form>
+            </div>
+            <div id="feedback-message" class="feedback-box" style="display: none;"></div>
+            <button id="final-close-btn" style="display: none;" class="submit-btn">Volver a la página</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            if (!sessionStorage.getItem("modalPhishingMostrado")) {
+                setTimeout(function() {
+                    const modal = document.getElementById("phishing-modal");
+                    modal.classList.add("active");
+                    document.body.classList.add("blur-background");
+                    sessionStorage.setItem("modalPhishingMostrado", "true");
+                }, 5000); 
+            }
+
+            const closeModalX = document.getElementById("close-modal");
+            const fakeForm = document.getElementById("fake-form");
+            const formContainer = document.getElementById("form-container");
+            const feedbackMessage = document.getElementById("feedback-message");
+            const finalCloseBtn = document.getElementById("final-close-btn");
+            const modal = document.getElementById("phishing-modal");
+
+            function showFeedback(esCierreSeguro) {
+                formContainer.style.display = "none";
+                closeModalX.style.display = "none";
+                feedbackMessage.style.display = "block";
+                finalCloseBtn.style.display = "block";
+                
+            if (esCierreSeguro) {
+                feedbackMessage.className = "feedback-box feedback-success";
+                feedbackMessage.innerHTML = `
+                <strong>¡FELICIDADES!</strong><br> <img src="imagenes/gorila.png" style="width: 100px; display: block; margin: 15px auto;">
+                <br> Nunca debes crear cuenta en cualquier página que te lo pida de la nada. Desconfiar es tu mejor escudo.`;
+            } else {
+                feedbackMessage.className = "feedback-box feedback-danger";
+                feedbackMessage.innerHTML = `<strong>CUIDADO</strong><br><img src="imagenes/gorilaX.png" style="width: 100px; display: block; margin: 15px auto;">
+                <br>Acabas de dar tu información personal muy fácil. En una página real, tus datos ya estarían en manos de extraños.`;
+            }
+
+            }
+
+            closeModalX.addEventListener("click", () => showFeedback(true));
+            fakeForm.addEventListener("submit", (e) => { e.preventDefault(); showFeedback(false); });
+            finalCloseBtn.addEventListener("click", () => {
+                modal.classList.remove("active");
+                document.body.classList.remove("blur-background");
+            });
+        });
+    </script>
+</body>
+</html>
